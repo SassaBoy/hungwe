@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hungwe Civil Engineering & Construction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --cream: #F7F3ED;
+  --cream2: #EDE8DF;
+  --ink: #1A1714;
+  --ink2: #2D2925;
+  --warm: #8B7355;
+  --orange: #C85D2A;
+  --orange-light: #E07040;
+  --sand: #D4C4A8;
+  --white: #FFFFFF;
+  --ff-display: 'DM Serif Display', serif;
+  --ff-sans: 'DM Sans', sans-serif;
+  --ff-head: 'Syne', sans-serif;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--ff-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+nav.stuck {
+  background: rgba(247,243,237,0.97);
+  backdrop-filter: blur(16px);
+  padding: 18px 64px;
+  border-bottom: 1px solid var(--sand);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 44px;
+  height: 44px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { width: 24px; fill: var(--cream); }
+.logo-words { line-height: 1.15; }
+.logo-name {
+  font-family: var(--ff-head);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.logo-tagline {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--warm);
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  text-decoration: none;
+  font-weight: 400;
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--orange);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-btn {
+  background: var(--ink);
+  color: var(--cream) !important;
+  padding: 12px 28px;
+  font-size: 12px !important;
+  letter-spacing: 0.1em !important;
+  transition: background 0.3s !important;
+}
+.nav-btn::after { display: none !important; }
+.nav-btn:hover { background: var(--orange) !important; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 26px; height: 1.5px;
+  background: var(--ink);
+  transition: 0.3s;
+}
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 140px 80px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(200,93,42,0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: slideUp 0.9s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-eyebrow-line {
+  width: 48px; height: 1px;
+  background: var(--orange);
+}
+.hero-eyebrow-text {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+}
+.hero-h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(52px, 5.5vw, 88px);
+  line-height: 1.02;
+  color: var(--cream);
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: slideUp 0.9s 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--orange-light);
+}
+.hero-sub {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(247,243,237,0.65);
+  max-width: 440px;
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: slideUp 0.9s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  opacity: 0;
+  animation: slideUp 0.9s 0.75s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.btn-fill {
+  background: var(--orange);
+  color: var(--white);
+  padding: 18px 44px;
+  font-family: var(--ff-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-fill:hover { background: var(--orange-light); transform: translateY(-2px); }
+.btn-ghost-light {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(247,243,237,0.6);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s;
+}
+.btn-ghost-light:hover { color: var(--cream); }
+.btn-ghost-light svg { transition: transform 0.3s; }
+.btn-ghost-light:hover svg { transform: translateX(5px); }
+
+.hero-right {
+  background: var(--cream2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 140px 80px 80px;
+  position: relative;
+}
+.hero-badge {
+  position: absolute;
+  top: 140px; left: -28px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 16px 24px;
+  text-align: center;
+  z-index: 2;
+  opacity: 0;
+  animation: slideUp 0.9s 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-badge-num {
+  font-family: var(--ff-head);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+.hero-badge-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1.2s 0.6s forwards;
+}
+.blueprint-visual {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  position: relative;
+}
+.bv-outer {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--sand);
+  animation: rotateSlow 40s linear infinite;
+}
+.bv-mid {
+  position: absolute;
+  inset: 14%;
+  border: 1px solid var(--sand);
+  animation: rotateSlow 28s linear infinite reverse;
+}
+.bv-inner {
+  position: absolute;
+  inset: 28%;
+  border: 2px solid var(--warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bv-core {
+  width: 80px; height: 80px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotateSlow 10s linear infinite;
+}
+.bv-core svg { width: 36px; fill: var(--cream); }
+.bv-line-h {
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 1px;
+  background: var(--sand);
+  transform: translateY(-50%);
+}
+.bv-line-v {
+  position: absolute;
+  left: 50%; top: 0; bottom: 0;
+  width: 1px;
+  background: var(--sand);
+  transform: translateX(-50%);
+}
+.bv-dots span {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+.bv-dots span:nth-child(1) { top: -3px; left: 50%; transform: translateX(-50%); }
+.bv-dots span:nth-child(2) { bottom: -3px; left: 50%; transform: translateX(-50%); }
+.bv-dots span:nth-child(3) { left: -3px; top: 50%; transform: translateY(-50%); }
+.bv-dots span:nth-child(4) { right: -3px; top: 50%; transform: translateY(-50%); }
+
+@keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+.hero-stats-row {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--sand);
+  padding-top: 40px;
+  opacity: 0;
+  animation: slideUp 0.9s 1.1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hstat {
+  flex: 1;
+  padding-right: 32px;
+  border-right: 1px solid var(--sand);
+  margin-right: 32px;
+}
+.hstat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.hstat-num {
+  font-family: var(--ff-head);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.hstat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── MARQUEE ─── */
+.marquee-strip {
+  background: var(--orange);
+  overflow: hidden;
+  padding: 18px 0;
+}
+.marquee-inner {
+  display: flex;
+  animation: marquee 22s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 36px;
+  font-family: var(--ff-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  flex-shrink: 0;
+}
+.marquee-sep { width: 4px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 50%; flex-shrink: 0; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ─── ABOUT ─── */
+#about {
+  padding: 140px 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.about-left .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.about-left .eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px; height: 1px;
+  background: var(--orange);
+}
+.about-h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(38px, 4vw, 62px);
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 40px;
+}
+.about-h2 em { font-style: italic; color: var(--orange); }
+.about-body {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #5A5047;
+  margin-bottom: 20px;
+}
+.about-body + .about-body { margin-top: -4px; }
+.about-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 52px;
+}
+.pillar {
+  padding: 28px;
+  border: 1px solid var(--sand);
+  background: var(--white);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.pillar:hover {
+  border-color: var(--orange);
+  box-shadow: 0 4px 24px rgba(200,93,42,0.08);
+}
+.pillar-icon {
+  font-size: 26px;
+  margin-bottom: 16px;
+  display: block;
+}
+.pillar-name {
+  font-family: var(--ff-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.pillar-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #7A6E64;
+}
+
+.about-right {
+  position: relative;
+}
+.about-card-big {
+  background: var(--ink);
+  padding: 64px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.about-card-big-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(200,93,42,0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.about-card-big-content { position: relative; z-index: 1; }
+.about-card-big-title {
+  font-family: var(--ff-display);
+  font-size: 44px;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.about-card-big-title em { color: var(--orange-light); font-style: italic; }
+.about-card-big-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(247,243,237,0.65);
+  margin-bottom: 40px;
+}
+.cert-list { display: flex; flex-direction: column; gap: 16px; }
+.cert-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(247,243,237,0.06);
+  border-left: 3px solid var(--orange);
+}
+.cert-check {
+  width: 22px; height: 22px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--white);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.cert-text {
+  font-size: 14px;
+  color: rgba(247,243,237,0.8);
+  letter-spacing: 0.02em;
+}
+
+.about-float-badge {
+  position: absolute;
+  bottom: -28px;
+  right: 40px;
+  background: var(--orange);
+  padding: 24px 32px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(200,93,42,0.35);
+}
+.afb-num {
+  font-family: var(--ff-head);
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+.afb-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  margin-top: 6px;
+}
+
+/* ─── SERVICES ─── */
+#services {
+  background: var(--ink);
+  padding: 140px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.services-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(200,93,42,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.services-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+  max-width: 1312px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.services-top .section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.services-top .section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px; height: 1px;
+  background: var(--orange);
+}
+.services-top h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 4vw, 60px);
+  line-height: 1.05;
+  color: var(--cream);
+}
+.services-top h2 em { color: var(--orange-light); font-style: italic; }
+.services-top-right {
+  max-width: 320px;
+  text-align: right;
+}
+.services-top-right p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(247,243,237,0.55);
+  margin-bottom: 28px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1312px;
+  margin: 0 auto;
+}
+.svc-card {
+  background: rgba(247,243,237,0.04);
+  padding: 56px 44px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+  cursor: default;
+  border-bottom: 3px solid transparent;
+  transition: background 0.4s, border-color 0.4s;
+}
+.svc-card:hover {
+  background: rgba(247,243,237,0.08);
+  border-bottom-color: var(--orange);
+}
+.svc-num {
+  font-family: var(--ff-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+  margin-bottom: 40px;
+  opacity: 0.7;
+}
+.svc-icon {
+  font-size: 36px;
+  margin-bottom: 28px;
+  display: block;
+}
+.svc-title {
+  font-family: var(--ff-head);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+}
+.svc-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(247,243,237,0.5);
+}
+.svc-arrow {
+  position: absolute;
+  bottom: 44px; right: 44px;
+  width: 38px; height: 38px;
+  border: 1px solid rgba(247,243,237,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, border-color 0.3s;
+}
+.svc-card:hover .svc-arrow {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+.svc-arrow svg { width: 14px; stroke: rgba(247,243,237,0.5); fill: none; transition: stroke 0.3s; }
+.svc-card:hover .svc-arrow svg { stroke: var(--white); }
+
+/* ─── STATS ─── */
+#stats {
+  padding: 0;
+  background: var(--cream2);
+}
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-box {
+  padding: 80px 64px;
+  border-right: 1px solid var(--sand);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.stat-box:last-child { border-right: none; }
+.stat-box:hover { background: var(--white); }
+.stat-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.stat-box:hover::before { transform: scaleX(1); }
+.stat-big {
+  font-family: var(--ff-head);
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.stat-big span { color: var(--orange); }
+.stat-lbl {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+
+/* ─── PROJECTS ─── */
+#projects {
+  padding: 140px 64px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.projects-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 72px;
+}
+.proj-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.proj-eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px; height: 1px;
+  background: var(--orange);
+}
+.projects-head h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 4vw, 60px);
+  color: var(--ink);
+  line-height: 1.05;
+}
+.projects-head h2 em { color: var(--orange); font-style: italic; }
+
+.projects-bento {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: 380px 280px;
+  gap: 16px;
+}
+.proj-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream2);
+  cursor: pointer;
+  group: true;
+}
+.proj-item:first-child { grid-row: span 2; }
+.proj-item-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.proj-item:hover .proj-item-bg { transform: scale(1.05); }
+.proj-bg1 {
+  background: linear-gradient(160deg, #1f1a10 0%, #2d2510 100%);
+}
+.proj-bg2 { background: linear-gradient(160deg, #101820 0%, #18273a 100%); }
+.proj-bg3 { background: linear-gradient(160deg, #10180f 0%, #182a18 100%); }
+.proj-bg4 { background: linear-gradient(160deg, #1a1008 0%, #2d1a10 100%); }
+.proj-bg5 { background: linear-gradient(160deg, #100f1a 0%, #1a1930 100%); }
+
+.proj-icon-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  opacity: 0.12;
+  transition: opacity 0.4s;
+}
+.proj-item:first-child .proj-icon-wrap { font-size: 140px; }
+.proj-item:hover .proj-icon-wrap { opacity: 0.18; }
+
+.proj-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,12,8,0.9) 0%, rgba(15,12,8,0.1) 60%);
+}
+.proj-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 36px;
+  transform: translateY(6px);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.proj-item:hover .proj-content { transform: translateY(0); }
+.proj-cat {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-light);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.proj-name {
+  font-family: var(--ff-head);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.25;
+  margin-bottom: 0;
+}
+.proj-item:first-child .proj-name { font-size: 28px; }
+.proj-detail {
+  font-size: 13px;
+  color: rgba(247,243,237,0.6);
+  margin-top: 10px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s 0.05s, transform 0.4s 0.05s;
+}
+.proj-item:hover .proj-detail { opacity: 1; transform: translateY(0); }
+
+/* ─── WHY ─── */
+#why {
+  background: var(--cream2);
+  padding: 140px 64px;
+}
+.why-inner {
+  max-width: 1312px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: start;
+}
+.why-left .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.why-left .eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px; height: 1px;
+  background: var(--orange);
+}
+.why-left h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 4vw, 60px);
+  color: var(--ink);
+  line-height: 1.08;
+  margin-bottom: 56px;
+}
+.why-left h2 em { color: var(--orange); font-style: italic; }
+
+.why-accord { display: flex; flex-direction: column; }
+.why-item {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--sand);
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 24px;
+  align-items: start;
+  transition: padding-left 0.3s;
+  cursor: default;
+}
+.why-item:first-child { border-top: 1px solid var(--sand); }
+.why-item:hover { padding-left: 10px; }
+.why-num {
+  font-family: var(--ff-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--orange);
+  opacity: 0.5;
+  padding-top: 3px;
+}
+.why-title {
+  font-family: var(--ff-head);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.why-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #7A6E64;
+}
+
+.why-right { padding-top: 80px; }
+.rating-card {
+  background: var(--white);
+  border: 1px solid var(--sand);
+  padding: 48px;
+  margin-bottom: 24px;
+}
+.rating-stars {
+  font-size: 22px;
+  color: var(--orange);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+.rating-num {
+  font-family: var(--ff-head);
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.rating-label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+.cred-list {
+  background: var(--ink);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.cred-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(247,243,237,0.08);
+  font-size: 14px;
+  color: rgba(247,243,237,0.75);
+  letter-spacing: 0.02em;
+}
+.cred-item:last-child { border-bottom: none; }
+.cred-dot {
+  width: 8px; height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── TESTIMONIALS ─── */
+#testimonials {
+  padding: 140px 64px;
+  background: var(--white);
+}
+.testi-head {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.testi-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.testi-eyebrow::before, .testi-eyebrow::after {
+  content: '';
+  display: block;
+  width: 48px; height: 1px;
+  background: var(--orange);
+}
+.testi-head h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 4vw, 58px);
+  color: var(--ink);
+  line-height: 1.05;
+}
+.testi-head h2 em { color: var(--orange); font-style: italic; }
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1312px;
+  margin: 0 auto;
+}
+.testi-card {
+  background: var(--cream);
+  padding: 48px;
+  border: 1px solid var(--sand);
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
+}
+.testi-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(26,23,20,0.08);
+}
+.testi-q {
+  font-family: var(--ff-display);
+  font-size: 72px;
+  color: var(--orange);
+  opacity: 0.25;
+  line-height: 0.8;
+  margin-bottom: 24px;
+}
+.testi-stars { color: var(--orange); font-size: 15px; letter-spacing: 3px; margin-bottom: 24px; }
+.testi-text {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #5A5047;
+  font-style: italic;
+  margin-bottom: 36px;
+}
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--sand);
+}
+.testi-avatar {
+  width: 48px; height: 48px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-head);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cream);
+  flex-shrink: 0;
+}
+.testi-name {
+  font-family: var(--ff-head);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+.testi-role { font-size: 12px; color: var(--orange); margin-top: 2px; }
+
+/* ─── CONTACT ─── */
+#contact {
+  background: var(--ink);
+  padding: 140px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(200,93,42,0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.contact-inner {
+  max-width: 1312px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 120px;
+  align-items: start;
+  position: relative;
+}
+.contact-left .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.contact-left .eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px; height: 1px;
+  background: var(--orange);
+}
+.contact-left h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 4vw, 58px);
+  color: var(--cream);
+  line-height: 1.08;
+  margin-bottom: 28px;
+}
+.contact-left h2 em { color: var(--orange-light); font-style: italic; }
+.contact-left p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(247,243,237,0.55);
+  margin-bottom: 56px;
+}
+.contact-details { display: flex; flex-direction: column; gap: 32px; }
+.contact-item { display: flex; align-items: flex-start; gap: 20px; }
+.contact-icon {
+  width: 48px; height: 48px;
+  border: 1px solid rgba(247,243,237,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+.contact-item:hover .contact-icon {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+.contact-item-label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+.contact-item-val {
+  font-size: 15px;
+  color: rgba(247,243,237,0.8);
+  line-height: 1.5;
+}
+
+/* FORM */
+.contact-form { display: flex; flex-direction: column; gap: 24px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.fg { display: flex; flex-direction: column; gap: 10px; }
+.fg label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+}
+.fg input, .fg select, .fg textarea {
+  background: rgba(247,243,237,0.05);
+  border: 1px solid rgba(247,243,237,0.12);
+  color: var(--cream);
+  padding: 16px 20px;
+  font-family: var(--ff-sans);
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.3s, background 0.3s;
+}
+.fg input::placeholder, .fg textarea::placeholder { color: rgba(247,243,237,0.25); }
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: var(--orange);
+  background: rgba(200,93,42,0.06);
+}
+.fg select { cursor: pointer; appearance: none; }
+.fg select option { background: #1a1714; }
+.fg textarea { resize: vertical; min-height: 148px; }
+.form-submit {
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  padding: 20px 52px;
+  font-family: var(--ff-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.form-submit:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0F0D0B;
+  padding: 80px 64px 48px;
+  border-top: 1px solid rgba(247,243,237,0.06);
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 80px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid rgba(247,243,237,0.08);
+  max-width: 1312px;
+  margin: 0 auto;
+}
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(247,243,237,0.4);
+  margin-top: 24px;
+  margin-bottom: 32px;
+  max-width: 280px;
+}
+.footer-socials { display: flex; gap: 12px; }
+.fsoc {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(247,243,237,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-head);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(247,243,237,0.4);
+  text-decoration: none;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.fsoc:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
+.footer-col h4 {
+  font-family: var(--ff-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 28px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.footer-col ul li a {
+  font-size: 14px;
+  color: rgba(247,243,237,0.45);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: block;
+}
+.footer-col ul li a:hover { color: var(--cream); }
+.footer-bottom {
+  max-width: 1312px;
+  margin: 48px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(247,243,237,0.25);
+}
+.footer-bottom span { color: var(--orange); }
+
+/* ─── SCROLL REVEAL ─── */
+.sr {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.sr.in { opacity: 1; transform: translateY(0); }
+.sr.d1 { transition-delay: 0.1s; }
+.sr.d2 { transition-delay: 0.2s; }
+.sr.d3 { transition-delay: 0.3s; }
+.sr.d4 { transition-delay: 0.4s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  nav { padding: 24px 36px; }
+  nav.stuck { padding: 16px 36px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  #hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 120px 36px 72px; }
+  .hero-right { padding: 72px 36px 72px; }
+  .hero-badge { left: 36px; top: auto; bottom: 340px; }
+  #about { grid-template-columns: 1fr; gap: 64px; padding: 100px 36px; }
+  .about-float-badge { right: 20px; bottom: -20px; }
+  .services-top { flex-direction: column; gap: 32px; }
+  .services-top-right { max-width: 100%; text-align: left; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  #services { padding: 100px 36px; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat-box { border-right: none; border-bottom: 1px solid var(--sand); }
+  .stat-box:nth-child(odd) { border-right: 1px solid var(--sand); }
+  #projects { padding: 100px 36px; }
+  .projects-bento { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 12px; }
+  .proj-item:first-child { grid-row: span 1; grid-column: span 2; min-height: 360px; }
+  .proj-item:not(:first-child) { min-height: 260px; }
+  .why-inner { grid-template-columns: 1fr; gap: 64px; }
+  #why { padding: 100px 36px; }
+  .why-right { padding-top: 0; }
+  .testi-grid { grid-template-columns: 1fr; }
+  #testimonials { padding: 100px 36px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 64px; }
+  #contact { padding: 100px 36px; }
+  footer { padding: 64px 36px 40px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+}
+@media (max-width: 600px) {
+  .hero-h1 { font-size: 46px; }
+  .hero-stats-row { flex-direction: column; gap: 24px; }
+  .hstat { border-right: none; border-bottom: 1px solid var(--sand); padding-bottom: 24px; margin-right: 0; }
+  .hstat:last-child { border-bottom: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  .about-pillars { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .projects-head { flex-direction: column; gap: 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .projects-bento { grid-template-columns: 1fr; }
+  .proj-item:first-child { grid-column: span 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M3 22V9l9-7 9 7v13H15v-7h-6v7z"/></svg>
+    </div>
+    <div class="logo-words">
+      <div class="logo-name">Hungwe</div>
+      <div class="logo-tagline">Civil Engineering & Construction</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-btn">Get a Quote</a></li>
+  </ul>
+  <div class="hamburger" id="ham">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-left-pattern"></div>
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">100% Namibian Owned</span>
+    </div>
+    <h1 class="hero-h1">
+      Building<br>
+      <em>Namibia's</em><br>
+      Future
+    </h1>
+    <p class="hero-sub">
+      From civil infrastructure to precision renovations — Hungwe delivers engineering excellence with 20+ years of combined expertise across Windhoek and beyond.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-fill">Start Your Project</a>
+      <a href="#projects" class="btn-ghost-light">
+        View Our Work
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9.75 5.25 13.5 9l-3.75 3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-badge">
+      <div class="hero-badge-num">5.0</div>
+      <div class="hero-badge-label">Google Rating</div>
+    </div>
+    <div class="hero-visual">
+      <div class="blueprint-visual">
+        <div class="bv-line-h"></div>
+        <div class="bv-line-v"></div>
+        <div class="bv-outer"></div>
+        <div class="bv-mid"></div>
+        <div class="bv-inner">
+          <div class="bv-core">
+            <svg viewBox="0 0 24 24"><path d="M3 22V9l9-7 9 7v13H15v-7h-6v7z"/></svg>
+          </div>
+        </div>
+        <div class="bv-dots">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats-row">
+      <div class="hstat">
+        <div class="hstat-num" id="h1">50+</div>
+        <div class="hstat-label">Projects Done</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num" id="h2">20+</div>
+        <div class="hstat-label">Years Experience</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num" id="h3">100%</div>
+        <div class="hstat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner" aria-hidden="true">
+    <div class="marquee-item">Civil Engineering<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Construction Management<span class="marquee-sep"></span></div>
+    <div class="marquee-item">General Contracting<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Home Renovations<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Design & Build<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Project Management<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Civil Works<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Civil Engineering<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Construction Management<span class="marquee-sep"></span></div>
+    <div class="marquee-item">General Contracting<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Home Renovations<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Design & Build<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Project Management<span class="marquee-sep"></span></div>
+    <div class="marquee-item">Civil Works<span class="marquee-sep"></span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <div class="eyebrow sr">Who We Are</div>
+    <h2 class="about-h2 sr d1">Built on trust,<br><em>driven</em> by excellence</h2>
+    <p class="about-body sr d2">
+      Hungwe Civil Engineering & Construction is a proudly 100% Namibian-owned company headquartered at Ausspannplatz, Windhoek. We deliver world-class engineering from complex civil infrastructure to bespoke home renovations.
+    </p>
+    <p class="about-body sr d3">
+      With over 20 years of combined expertise, our team of engineers, project managers, and skilled tradespeople have successfully completed projects for government institutions, corporations, and private clients across Namibia — including institutional bids with NUST.
+    </p>
+    <div class="about-pillars">
+      <div class="pillar sr d1">
+        <span class="pillar-icon">🏗️</span>
+        <div class="pillar-name">Precision Engineering</div>
+        <div class="pillar-desc">ISO-aligned standards on every single project we deliver.</div>
+      </div>
+      <div class="pillar sr d2">
+        <span class="pillar-icon">🇳🇦</span>
+        <div class="pillar-name">100% Namibian</div>
+        <div class="pillar-desc">Local knowledge, global-quality output and standards.</div>
+      </div>
+      <div class="pillar sr d3">
+        <span class="pillar-icon">📋</span>
+        <div class="pillar-name">Tender Ready</div>
+        <div class="pillar-desc">Proven track record in government and institutional contracts.</div>
+      </div>
+      <div class="pillar sr d4">
+        <span class="pillar-icon">⏱️</span>
+        <div class="pillar-name">On Time, On Budget</div>
+        <div class="pillar-desc">We respect your timeline and your money. Always.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-right sr d2">
+    <div class="about-card-big">
+      <div class="about-card-big-pattern"></div>
+      <div class="about-card-big-content">
+        <div class="about-card-big-title">
+          Namibia's <em>most trusted</em> civil contractor
+        </div>
+        <p class="about-card-big-body">
+          We specialize in general contracting, construction management, and design-build projects — delivering every phase from concept to completion under one trusted roof.
+        </p>
+        <div class="cert-list">
+          <div class="cert-row"><div class="cert-check">✓</div><div class="cert-text">Registered with BIPA Namibia</div></div>
+          <div class="cert-row"><div class="cert-check">✓</div><div class="cert-text">100% Namibian BEE Compliant</div></div>
+          <div class="cert-row"><div class="cert-check">✓</div><div class="cert-text">NUST Government Tender Experience</div></div>
+          <div class="cert-row"><div class="cert-check">✓</div><div class="cert-text">Full Public Liability Coverage</div></div>
+          <div class="cert-row"><div class="cert-check">✓</div><div class="cert-text">20+ Years Combined Team Expertise</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-float-badge">
+      <div class="afb-num">20+</div>
+      <div class="afb-label">Years Combined<br>Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-pattern"></div>
+  <div class="services-top">
+    <div class="sr">
+      <div class="section-eyebrow">What We Do</div>
+      <h2>Our <em>services</em></h2>
+    </div>
+    <div class="services-top-right sr d2">
+      <p>From the ground up to the final finish — we cover every phase of your construction project with skill and precision.</p>
+      <a href="#contact" class="btn-fill">Request a Quote</a>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card sr">
+      <div class="svc-num">01</div>
+      <span class="svc-icon">🏛️</span>
+      <div class="svc-title">Civil Engineering</div>
+      <p class="svc-desc">Roads, drainage, earthworks, foundations and civil infrastructure for public and private sectors across Namibia.</p>
+      <div class="svc-arrow"><svg viewBox="0 0 18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 9h10.5M9.75 5.25 13.5 9l-3.75 3.75"/></svg></div>
+    </div>
+    <div class="svc-card sr d1">
+      <div class="svc-num">02</div>
+      <span class="svc-icon">📐</span>
+      <div class="svc-title">Construction Management</div>
+      <p class="svc-desc">End-to-end project oversight — coordinating contractors, budgets, timelines, and quality compliance throughout.</p>
+      <div class="svc-arrow"><svg viewBox="0 0 18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 9h10.5M9.75 5.25 13.5 9l-3.75 3.75"/></svg></div>
+    </div>
+    <div class="svc-card sr d2">
+      <div class="svc-num">03</div>
+      <span class="svc-icon">🔨</span>
+      <div class="svc-title">General Contracting</div>
+      <p class="svc-desc">Full-service contracting for commercial, industrial, and residential projects. One contact, seamless delivery.</p>
+      <div class="svc-arrow"><svg viewBox="0 0 18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 9h10.5M9.75 5.25 13.5 9l-3.75 3.75"/></svg></div>
+    </div>
+    <div class="svc-card sr">
+      <div class="svc-num">04</div>
+      <span class="svc-icon">🏠</span>
+      <div class="svc-title">Home Renovations</div>
+      <p class="svc-desc">Kitchens, bathrooms, full home makeovers and structural alterations — transforming spaces with craftsmanship.</p>
+      <div class="svc-arrow"><svg viewBox="0 0 18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 9h10.5M9.75 5.25 13.5 9l-3.75 3.75"/></svg></div>
+    </div>
+    <div class="svc-card sr d1">
+      <div class="svc-num">05</div>
+      <span class="svc-icon">🔧</span>
+      <div class="svc-title">Civil Works</div>
+      <p class="svc-desc">Retaining walls, paving, stormwater systems, bulk earthworks and site preparation for all project scales.</p>
+      <div class="svc-arrow"><svg viewBox="0 0 18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 9h10.5M9.75 5.25 13.5 9l-3.75 3.75"/></svg></div>
+    </div>
+    <div class="svc-card sr d2">
+      <div class="svc-num">06</div>
+      <span class="svc-icon">📊</span>
+      <div class="svc-title">Project Management</div>
+      <p class="svc-desc">Strategic management for clients who need professional oversight of scope, cost, risk and procurement.</p>
+      <div class="svc-arrow"><svg viewBox="0 0 18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 9h10.5M9.75 5.25 13.5 9l-3.75 3.75"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-row">
+    <div class="stat-box sr">
+      <div class="stat-big"><span id="s1">50</span><span>+</span></div>
+      <div class="stat-lbl">Projects Completed</div>
+    </div>
+    <div class="stat-box sr d1">
+      <div class="stat-big"><span id="s2">20</span><span>+</span></div>
+      <div class="stat-lbl">Years Experience</div>
+    </div>
+    <div class="stat-box sr d2">
+      <div class="stat-big"><span id="s3">100</span><span style="color:var(--orange)">%</span></div>
+      <div class="stat-lbl">Client Satisfaction</div>
+    </div>
+    <div class="stat-box sr d3">
+      <div class="stat-big"><span id="s4">8</span></div>
+      <div class="stat-lbl">Service Areas</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-head">
+    <div class="sr">
+      <div class="proj-eyebrow">Our Portfolio</div>
+      <h2>Recent <em>work</em></h2>
+    </div>
+    <a href="#contact" class="btn-fill sr d1" style="align-self:flex-end;">Start a Project</a>
+  </div>
+  <div class="projects-bento">
+    <div class="proj-item sr">
+      <div class="proj-item-bg proj-bg1"></div>
+      <div class="proj-icon-wrap">🏗️</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-content">
+        <div class="proj-cat">Civil Engineering</div>
+        <div class="proj-name">Urban Road Infrastructure Development</div>
+        <div class="proj-detail">Full road construction with drainage and stormwater systems. Windhoek, 2024.</div>
+      </div>
+    </div>
+    <div class="proj-item sr d1">
+      <div class="proj-item-bg proj-bg2"></div>
+      <div class="proj-icon-wrap">🏢</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-content">
+        <div class="proj-cat">General Contracting</div>
+        <div class="proj-name">Commercial Office Complex</div>
+        <div class="proj-detail">Multi-story build at Ausspannplatz precinct.</div>
+      </div>
+    </div>
+    <div class="proj-item sr d2">
+      <div class="proj-item-bg proj-bg3"></div>
+      <div class="proj-icon-wrap">🏫</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-content">
+        <div class="proj-cat">Construction Management</div>
+        <div class="proj-name">NUST Institutional Build</div>
+        <div class="proj-detail">Government tender — delivered on time and on budget.</div>
+      </div>
+    </div>
+    <div class="proj-item sr">
+      <div class="proj-item-bg proj-bg4"></div>
+      <div class="proj-icon-wrap">🏠</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-content">
+        <div class="proj-cat">Renovations</div>
+        <div class="proj-name">Luxury Residential Renovation</div>
+        <div class="proj-detail">Full interior transformation, Klein Windhoek estate.</div>
+      </div>
+    </div>
+    <div class="proj-item sr d1">
+      <div class="proj-item-bg proj-bg5"></div>
+      <div class="proj-icon-wrap">🔩</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-content">
+        <div class="proj-cat">Civil Works</div>
+        <div class="proj-name">Industrial Site Preparation</div>
+        <div class="proj-detail">Bulk earthworks and retaining for industrial development.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="why-inner">
+    <div>
+      <div class="eyebrow sr">Why Choose Us</div>
+      <h2 class="sr d1">The Hungwe <em>difference</em></h2>
+      <div class="why-accord">
+        <div class="why-item sr d1">
+          <div class="why-num">01</div>
+          <div>
+            <div class="why-title">100% Namibian Owned & Operated</div>
+            <p class="why-desc">Your investment stays in Namibia. We understand the local environment, regulations, suppliers, and communities better than any foreign firm ever could.</p>
+          </div>
+        </div>
+        <div class="why-item sr d2">
+          <div class="why-num">02</div>
+          <div>
+            <div class="why-title">Design-Build Under One Roof</div>
+            <p class="why-desc">From concept through construction, we manage the entire process — eliminating the costly coordination gaps between separate design and build firms.</p>
+          </div>
+        </div>
+        <div class="why-item sr d3">
+          <div class="why-num">03</div>
+          <div>
+            <div class="why-title">Proven Government Tender Track Record</div>
+            <p class="why-desc">We've successfully delivered institutional contracts including NUST bids. We know what compliance and quality delivery looks like at every level.</p>
+          </div>
+        </div>
+        <div class="why-item sr d4">
+          <div class="why-num">04</div>
+          <div>
+            <div class="why-title">Transparent, Fixed-Price Quoting</div>
+            <p class="why-desc">No hidden costs, no surprise variations. Our detailed quotes give you certainty so you can budget with confidence from day one.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-right sr d2">
+      <div class="rating-card">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-num">5.0</div>
+        <div class="rating-label">Google Rating — 3 Verified Reviews</div>
+      </div>
+      <div class="cred-list">
+        <div class="cred-item"><div class="cred-dot"></div>Registered with BIPA Namibia</div>
+        <div class="cred-item"><div class="cred-dot"></div>100% Namibian BEE Compliant</div>
+        <div class="cred-item"><div class="cred-dot"></div>Government Tender Experience</div>
+        <div class="cred-item"><div class="cred-dot"></div>20+ Years Combined Expertise</div>
+        <div class="cred-item"><div class="cred-dot"></div>Full Public Liability Coverage</div>
+        <div class="cred-item"><div class="cred-dot"></div>Design-Build Capability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-head">
+    <div class="testi-eyebrow sr">Client Reviews</div>
+    <h2 class="sr d1">What clients <em>say</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card sr">
+      <div class="testi-q">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Hungwe delivered our renovation on time and exactly within budget. The quality of workmanship is outstanding. Truly professional from first consultation to handover.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">KO</div>
+        <div>
+          <div class="testi-name">Kape Onguatjindu</div>
+          <div class="testi-role">Private Client, Windhoek</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card sr d1">
+      <div class="testi-q">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">We hired Hungwe for a large civil works contract and they exceeded every expectation. Their project management is world-class. Will absolutely use them again.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JN</div>
+        <div>
+          <div class="testi-name">James Nakale</div>
+          <div class="testi-role">Commercial Developer</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card sr d2">
+      <div class="testi-q">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">From design to final handover, Hungwe made the whole process completely stress-free. Their technical expertise and honest communication set them apart from every contractor we've worked with.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MS</div>
+        <div>
+          <div class="testi-name">Maria Shivute</div>
+          <div class="testi-role">Property Investor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-pattern"></div>
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="eyebrow sr">Get In Touch</div>
+      <h2 class="sr d1">Start your<br><em>project</em> today</h2>
+      <p class="sr d2">Ready to build? Whether you have detailed plans or just an idea, we'll guide you through every step. Free quote within 48 hours.</p>
+      <div class="contact-details">
+        <div class="contact-item sr d1">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Office Address</div>
+            <div class="contact-item-val">Unit 1, Berg Doring Building, Ausspannplatz<br>Sir Seretse Khama St, Windhoek</div>
+          </div>
+        </div>
+        <div class="contact-item sr d2">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Phone & WhatsApp</div>
+            <div class="contact-item-val">081 325 3371</div>
+          </div>
+        </div>
+        <div class="contact-item sr d3">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">info@hungwecivils.com</div>
+          </div>
+        </div>
+        <div class="contact-item sr d4">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-item-label">Working Hours</div>
+            <div class="contact-item-val">Monday – Friday: 8:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sr d2">
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="fg">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your full name" required>
+          </div>
+          <div class="fg">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+264 81 ...">
+          </div>
+        </div>
+        <div class="fg">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="fg">
+          <label>Service Required</label>
+          <select>
+            <option value="">Select a service</option>
+            <option>Civil Engineering</option>
+            <option>Construction Management</option>
+            <option>General Contracting</option>
+            <option>Home Renovations</option>
+            <option>Kitchen Renovations</option>
+            <option>Bathroom Renovations</option>
+            <option>Civil Works</option>
+            <option>Project Management</option>
+            <option>Design & Build</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Project Details</label>
+          <textarea placeholder="Tell us about your project — location, scope, and target timeline..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Send Enquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="text-decoration:none;">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M3 22V9l9-7 9 7v13H15v-7h-6v7z"/></svg>
+        </div>
+        <div class="logo-words">
+          <div class="logo-name" style="color:var(--cream)">Hungwe</div>
+          <div class="logo-tagline">Civil Engineering & Construction</div>
+        </div>
+      </a>
+      <p>100% Namibian-owned engineering and construction excellence. Building infrastructure, homes, and futures across Namibia.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/p/Hungwe-Civil-Engineering-and-Construction-100084729390980/" class="fsoc" target="_blank">f</a>
+        <a href="https://na.linkedin.com/company/hungwe-civil-engineering-and-construction" class="fsoc" target="_blank">in</a>
+        <a href="tel:+264813253371" class="fsoc">☎</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Civil Engineering</a></li>
+        <li><a href="#services">Construction Management</a></li>
+        <li><a href="#services">General Contracting</a></li>
+        <li><a href="#services">Home Renovations</a></li>
+        <li><a href="#services">Civil Works</a></li>
+        <li><a href="#services">Project Management</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#projects">Portfolio</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="tel:+264813253371">081 325 3371</a></li>
+        <li><a href="mailto:info@hungwecivils.com">info@hungwecivils.com</a></li>
+        <li><a href="#">Ausspannplatz, Windhoek</a></li>
+        <li><a href="#">Mon – Fri: 8am – 5pm</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 <span>Hungwe Civil Engineering & Construction (Pty) Ltd</span>. All rights reserved.</div>
+    <div>Proudly <span>100% Namibian</span></div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('stuck', window.scrollY > 50);
+});
+
+// Scroll reveal
+const srEls = document.querySelectorAll('.sr');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+srEls.forEach(el => observer.observe(el));
+
+// Counter animation
+function countUp(el, target, suffix = '') {
+  let start = null;
+  const duration = 1800;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const statEls = [
+  { id: 's1', target: 50, suffix: '' },
+  { id: 's2', target: 20, suffix: '' },
+  { id: 's3', target: 100, suffix: '' },
+  { id: 's4', target: 8, suffix: '' }
+];
+const statsSection = document.getElementById('stats');
+let counted = false;
+const statsObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !counted) {
+    counted = true;
+    statEls.forEach(s => countUp(document.getElementById(s.id), s.target, s.suffix));
+  }
+}, { threshold: 0.3 });
+statsSection && statsObs.observe(statsSection);
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// Form submit
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '✓ Sent! We\'ll contact you within 48 hours.';
+  btn.style.background = '#2d6a2d';
+  btn.style.padding = '20px 40px';
+  setTimeout(() => {
+    btn.textContent = 'Send Enquiry →';
+    btn.style.background = '';
+    btn.style.padding = '';
+    e.target.reset();
+  }, 5000);
+}
+</script>
+</body>
+</html>
