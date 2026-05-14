@@ -1,317 +1,1457 @@
-I’ve updated your code to be fully responsive and refined the design for a more "premium industrial" feel.
-
-### Key Improvements:
-
-1. **Mobile Navigation:** Added a functional hamburger menu for smaller screens.
-2. **Responsive Grid System:** Content now stacks gracefully on tablets and phones (e.g., the 4-column stats become 2-column or 1-column).
-3. **Visual Hierarchy:** Cleaned up spacing, added subtle glassmorphism to the nav, and improved the "Project" cards for mobile readability.
-4. **Performance & UX:** Fixed the "reveal" animations so they trigger correctly on scroll.
-
-```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Horizon Fuels & Logistics — Powering Southern Africa's Future</title>
-    <meta name="description" content="Namibia's premier petroleum and logistics company. Wholly Namibian-owned." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ink: #0e0c0a;
-            --ink-2: #15110d;
-            --bone: #f4ecdf;
-            --bone-2: #d8cdb8;
-            --muted: #8a7e6a;
-            --line: rgba(216,205,184,.12);
-            --ember: #ff7a1a;
-            --copper: #c2632a;
-            --serif: 'Fraunces', serif;
-            --sans: 'Inter', sans-serif;
-            --mono: 'JetBrains Mono', monospace;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Horizon Fuels & Logistics — Powering Southern Africa's Future</title>
+<meta name="description" content="Namibia's premier petroleum and logistics company. Wholly Namibian-owned. Powering Southern Africa's energy future."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#050508;
+  --deep:#0a0a12;
+  --card:#0f0f1a;
+  --border:#1e1e2e;
+  --orange:#ff5c1a;
+  --amber:#ffaa33;
+  --gold:#f0c040;
+  --white:#f5f0e8;
+  --muted:#7a7a8c;
+  --glass:rgba(255,255,255,0.04);
+  --font-head:'Syne',sans-serif;
+  --font-mono:'Space Mono',monospace;
+  --font-body:'Outfit',sans-serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  cursor:none;
+}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            background: var(--ink);
-            color: var(--bone);
-            font-family: var(--sans);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+/* ─── CUSTOM CURSOR ──────────────────────────────────────── */
+#cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--orange);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .15s var(--ease-out),width .3s,height .3s,background .3s;
+  mix-blend-mode:difference;
+}
+#cursor-trail{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(255,92,26,.35);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:left .12s var(--ease-out),top .12s var(--ease-out),width .3s,height .3s;
+}
+body:hover #cursor{opacity:1}
 
-        .wrap { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
-        .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
-        .ember { color: var(--ember); }
+/* ─── NOISE OVERLAY ──────────────────────────────────────── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.025;pointer-events:none;z-index:9990;
+}
 
-        /* ---------- NAVIGATION ---------- */
-        nav.top {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(14, 12, 10, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--line);
-        }
-        nav .row { height: 72px; display: flex; align-items: center; justify-content: space-between; }
-        
-        .brand { display: flex; align-items: center; gap: 12px; font-family: var(--serif); font-weight: 600; font-size: 17px; }
-        .brand .mark { 
-            width: 32px; height: 32px; background: var(--ember); color: var(--ink); 
-            display: grid; place-items: center; font-weight: 700; border-radius: 4px; 
-        }
+/* ─── NAVIGATION ─────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 4vw;
+  background:transparent;
+  transition:background .5s, padding .4s, backdrop-filter .5s;
+}
+nav.scrolled{
+  background:rgba(5,5,8,.85);
+  backdrop-filter:blur(20px);
+  padding:1rem 4vw;
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:var(--font-head);
+  font-size:1.3rem;font-weight:800;
+  letter-spacing:.08em;
+  color:var(--white);text-decoration:none;
+  display:flex;align-items:center;gap:.6rem;
+}
+.nav-logo span{color:var(--orange)}
+.logo-mark{
+  width:32px;height:32px;
+  background:var(--orange);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:900;color:#fff;font-family:var(--font-head);
+  animation:spin-slow 8s linear infinite;
+}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:.8rem;font-family:var(--font-mono);
+  letter-spacing:.12em;text-transform:uppercase;
+  transition:color .25s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;
+  background:var(--orange);transform:scaleX(0);
+  transform-origin:left;transition:transform .3s var(--ease-out);
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{
+  padding:.55rem 1.4rem;
+  background:var(--orange);color:#fff;
+  font-family:var(--font-mono);font-size:.75rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  border:none;border-radius:2px;cursor:none;
+  text-decoration:none;
+  transition:background .25s,transform .2s;
+  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+}
+.nav-cta:hover{background:var(--amber);transform:translateY(-1px)}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:none;
+  background:none;border:none;padding:.3rem;
+}
+.hamburger span{
+  display:block;width:24px;height:2px;background:var(--white);
+  transition:transform .3s,opacity .3s;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(5,5,8,.97);backdrop-filter:blur(30px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2.5rem;
+  transform:translateX(100%);transition:transform .5s var(--ease-out);
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{
+  font-family:var(--font-head);font-size:2.8rem;font-weight:700;
+  color:var(--white);text-decoration:none;letter-spacing:.04em;
+  transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--orange)}
+.mobile-menu .mm-cta{
+  margin-top:1rem;padding:.9rem 3rem;
+  background:var(--orange);border-radius:2px;font-size:1rem;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+}
 
-        .nav-links { display: flex; gap: 32px; }
-        .nav-links a { font-size: 13px; color: var(--bone-2); transition: color .3s; }
-        .nav-links a:hover { color: var(--ember); }
+/* ─── HERO ───────────────────────────────────────────────── */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 4vw 8vh;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#050508 0%,#0d0810 40%,#100810 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,92,26,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,92,26,.05) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 70% at 60% 50%,black 30%,transparent 100%);
+}
+.hero-glow{
+  position:absolute;
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(255,92,26,.18) 0%,transparent 70%);
+  top:50%;right:-10%;transform:translateY(-50%);
+  animation:pulse-glow 4s ease-in-out infinite alternate;
+}
+.hero-glow2{
+  position:absolute;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(255,170,51,.1) 0%,transparent 70%);
+  bottom:-10%;left:20%;
+  animation:pulse-glow 6s ease-in-out infinite alternate-reverse;
+}
+@keyframes pulse-glow{
+  from{transform:translateY(-50%) scale(1);opacity:.8}
+  to{transform:translateY(-50%) scale(1.15);opacity:1}
+}
+.hero-eyebrow{
+  font-family:var(--font-mono);font-size:.72rem;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:.8rem;
+  opacity:0;animation:fadeUp .8s .3s var(--ease-out) forwards;
+}
+.hero-eyebrow::before{
+  content:'';display:block;width:40px;height:1px;background:var(--orange);
+}
+.hero-h1{
+  font-family:var(--font-head);
+  font-size:clamp(3.5rem,8vw,9rem);
+  font-weight:800;line-height:.95;
+  letter-spacing:-.02em;
+  margin-bottom:2.5rem;
+  opacity:0;animation:fadeUp .9s .5s var(--ease-out) forwards;
+}
+.hero-h1 em{
+  font-style:normal;
+  background:linear-gradient(90deg,var(--orange),var(--amber));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  max-width:520px;
+  color:var(--muted);font-size:1.05rem;line-height:1.7;
+  margin-bottom:3rem;
+  opacity:0;animation:fadeUp .9s .7s var(--ease-out) forwards;
+}
+.hero-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .9s .9s var(--ease-out) forwards;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.85rem 2rem;
+  background:var(--orange);color:#fff;
+  font-family:var(--font-mono);font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:2px;cursor:none;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  transition:background .25s,transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.btn-primary:hover::before{transform:translateX(100%)}
+.btn-primary:hover{background:var(--amber);transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,92,26,.35)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.85rem 2rem;
+  border:1px solid var(--border);color:var(--white);
+  font-family:var(--font-mono);font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:2px;cursor:none;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+.btn-ghost:hover{border-color:var(--orange);background:rgba(255,92,26,.08);transform:translateY(-2px)}
+.arrow-icon{
+  width:16px;height:16px;transition:transform .25s;
+}
+.btn-primary:hover .arrow-icon,.btn-ghost:hover .arrow-icon{transform:translateX(4px)}
+.hero-stats{
+  position:absolute;right:4vw;bottom:8vh;
+  display:flex;flex-direction:column;gap:2rem;
+  opacity:0;animation:fadeLeft .9s 1.1s var(--ease-out) forwards;
+}
+.stat-item{text-align:right}
+.stat-num{
+  font-family:var(--font-head);font-size:2.8rem;font-weight:800;
+  line-height:1;color:var(--white);
+  background:linear-gradient(135deg,var(--white),var(--muted));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-num span{color:var(--orange);-webkit-text-fill-color:var(--orange)}
+.stat-label{
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.15em;color:var(--muted);text-transform:uppercase;
+}
+.scroll-indicator{
+  position:absolute;bottom:3vh;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  opacity:0;animation:fadeUp .9s 1.3s var(--ease-out) forwards;
+}
+.scroll-line{
+  width:1px;height:50px;background:linear-gradient(var(--orange),transparent);
+  animation:scroll-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-pulse{
+  0%,100%{height:30px;opacity:.4}
+  50%{height:60px;opacity:1}
+}
+.scroll-text{
+  font-family:var(--font-mono);font-size:.6rem;
+  letter-spacing:.2em;color:var(--muted);text-transform:uppercase;
+  writing-mode:vertical-rl;
+}
 
-        .menu-toggle { display: none; background: none; border: none; color: var(--bone); font-size: 24px; cursor: pointer; }
+/* ─── MARQUEE ────────────────────────────────────────────── */
+.marquee-section{
+  padding:1.5rem 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+  background:var(--deep);
+}
+.marquee-track{
+  display:flex;gap:4rem;white-space:nowrap;
+  animation:marquee 25s linear infinite;
+}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  display:flex;align-items:center;gap:1rem;
+  font-family:var(--font-mono);font-size:.75rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);flex-shrink:0;
+}
+.marquee-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0}
 
-        @media (max-width: 860px) {
-            .nav-links { 
-                position: fixed; top: 72px; left: 0; width: 100%; background: var(--ink); 
-                flex-direction: column; padding: 40px; gap: 24px; border-bottom: 1px solid var(--line);
-                transform: translateY(-120%); transition: transform 0.4s ease;
-            }
-            .nav-links.active { transform: translateY(0); }
-            .menu-toggle { display: block; }
-            .nav-cta { display: none; }
-        }
+/* ─── ABOUT ──────────────────────────────────────────────── */
+#about{
+  padding:12vh 4vw;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6rem;
+  align-items:center;
+  position:relative;
+}
+#about::before{
+  content:'01';
+  position:absolute;top:8vh;right:4vw;
+  font-family:var(--font-head);font-size:12rem;font-weight:800;
+  color:rgba(255,255,255,.02);line-height:1;pointer-events:none;
+}
+.section-eyebrow{
+  font-family:var(--font-mono);font-size:.7rem;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.section-eyebrow::before{
+  content:'';display:block;width:28px;height:1px;background:var(--orange);
+}
+.section-h2{
+  font-family:var(--font-head);
+  font-size:clamp(2.2rem,4vw,4rem);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-.02em;
+  margin-bottom:1.8rem;
+}
+.about-body{
+  color:var(--muted);line-height:1.85;font-size:1rem;margin-bottom:2.5rem;
+}
+.about-detail{
+  display:flex;flex-direction:column;gap:1rem;
+}
+.detail-row{
+  display:flex;gap:1rem;padding:1.2rem;
+  border:1px solid var(--border);border-radius:4px;
+  background:var(--glass);
+  backdrop-filter:blur(8px);
+  transition:border-color .3s,transform .3s;
+}
+.detail-row:hover{border-color:rgba(255,92,26,.4);transform:translateX(4px)}
+.detail-label{
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.15em;color:var(--orange);text-transform:uppercase;
+  min-width:100px;padding-top:.15rem;
+}
+.detail-val{font-size:.9rem;color:var(--white);line-height:1.5}
+.about-visual{
+  position:relative;
+  height:550px;
+}
+.about-card{
+  position:absolute;
+  border-radius:6px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.about-card img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.75) saturate(.8)}
+.about-card-main{
+  width:70%;height:420px;
+  top:0;right:0;
+}
+.about-card-accent{
+  width:50%;height:220px;
+  bottom:0;left:0;
+  border:2px solid rgba(255,92,26,.4);
+}
+.about-badge{
+  position:absolute;bottom:30px;right:30px;
+  background:var(--orange);
+  padding:1.2rem 1.5rem;border-radius:4px;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.badge-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.badge-text{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:rgba(255,255,255,.8);text-transform:uppercase}
+.about-line{
+  position:absolute;top:50px;left:38%;width:1px;height:200px;
+  background:linear-gradient(var(--orange),transparent);
+}
 
-        /* ---------- HERO ---------- */
-        .hero { position: relative; padding: 180px 0 100px; min-height: 90vh; display: flex; align-items: center; }
-        .hero-bg { 
-            position: absolute; inset: 0; z-index: -1; 
-            background: radial-gradient(circle at 70% 30%, rgba(255,122,26,0.1), transparent), var(--ink);
-        }
-        .hero-title { 
-            font-family: var(--serif); font-size: clamp(48px, 8vw, 110px); 
-            line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 32px; 
-        }
-        .hero-title em { font-style: italic; color: var(--ember); font-weight: 300; }
-        
-        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: end; }
-        @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
+/* ─── SERVICES ───────────────────────────────────────────── */
+#services{
+  padding:12vh 4vw;
+  background:var(--deep);
+  position:relative;overflow:hidden;
+}
+#services::before{
+  content:'02';
+  position:absolute;top:6vh;right:2vw;
+  font-family:var(--font-head);font-size:12rem;font-weight:800;
+  color:rgba(255,255,255,.025);line-height:1;pointer-events:none;
+}
+.services-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:5rem;flex-wrap:wrap;gap:1.5rem;
+}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5px;
+  background:var(--border);
+  border:1.5px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+}
+.service-card{
+  background:var(--card);
+  padding:3rem 2.5rem;
+  position:relative;overflow:hidden;
+  transition:background .4s;
+  cursor:none;
+}
+.service-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,92,26,.08),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.service-card:hover::before{opacity:1}
+.service-card:hover{background:#14141f}
+.service-num{
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.2em;color:var(--orange);
+  margin-bottom:2.5rem;
+  display:block;
+}
+.service-icon{
+  width:52px;height:52px;margin-bottom:1.8rem;
+  background:rgba(255,92,26,.1);
+  border:1px solid rgba(255,92,26,.25);
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s,border-color .3s,transform .3s;
+}
+.service-card:hover .service-icon{
+  background:rgba(255,92,26,.2);
+  border-color:var(--orange);
+  transform:scale(1.05) rotate(-3deg);
+}
+.service-icon svg{width:24px;height:24px;fill:var(--orange)}
+.service-title{
+  font-family:var(--font-head);font-size:1.35rem;
+  font-weight:700;margin-bottom:1rem;
+  letter-spacing:-.01em;
+}
+.service-desc{color:var(--muted);font-size:.92rem;line-height:1.7}
+.service-arrow{
+  position:absolute;bottom:2rem;right:2rem;
+  width:32px;height:32px;
+  border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .3s,background .3s,transform .3s;
+}
+.service-card:hover .service-arrow{
+  border-color:var(--orange);
+  background:var(--orange);
+  transform:translate(3px,-3px);
+}
+.service-arrow svg{width:14px;height:14px;fill:var(--white)}
 
-        .cta { 
-            display: inline-flex; align-items: center; gap: 12px; 
-            padding: 16px 32px; background: var(--ember); color: var(--ink); 
-            font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;
-            transition: 0.3s;
-        }
-        .cta:hover { transform: translateY(-2px); background: var(--bone); }
-        .cta.ghost { background: transparent; color: var(--bone); border: 1px solid var(--line); }
+/* ─── PROJECTS ───────────────────────────────────────────── */
+#projects{
+  padding:12vh 4vw;
+  position:relative;overflow:hidden;
+}
+#projects::before{
+  content:'03';
+  position:absolute;top:6vh;left:2vw;
+  font-family:var(--font-head);font-size:12rem;font-weight:800;
+  color:rgba(255,255,255,.025);line-height:1;pointer-events:none;
+}
+.project-card{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:6px;overflow:hidden;
+  margin-bottom:1.5px;
+  transition:border-color .4s;
+}
+.project-card:hover{border-color:rgba(255,92,26,.4)}
+.project-img{
+  position:relative;overflow:hidden;
+  height:400px;
+}
+.project-img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.65) saturate(.7);
+  transition:transform .7s var(--ease-out),filter .5s;
+}
+.project-card:hover .project-img img{
+  transform:scale(1.05);
+  filter:brightness(.8) saturate(.9);
+}
+.project-tag{
+  position:absolute;top:1.5rem;left:1.5rem;
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.4rem .9rem;border-radius:2px;
+  background:rgba(255,92,26,.9);color:#fff;
+}
+.project-info{
+  background:var(--card);
+  padding:3.5rem 3rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.project-title{
+  font-family:var(--font-head);font-size:1.8rem;font-weight:800;
+  margin-bottom:1rem;letter-spacing:-.02em;
+}
+.project-desc{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:2rem}
+.project-specs{display:flex;flex-direction:column;gap:.8rem}
+.spec-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.8rem 0;
+  border-bottom:1px solid var(--border);
+}
+.spec-row:last-child{border-bottom:none}
+.spec-key{
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.12em;color:var(--muted);text-transform:uppercase;
+}
+.spec-val{
+  font-family:var(--font-mono);font-size:.8rem;
+  color:var(--white);font-weight:700;
+}
+.spec-val.highlight{color:var(--orange)}
 
-        /* ---------- STATS ---------- */
-        .stats { 
-            display: grid; grid-template-columns: repeat(4, 1fr); 
-            margin-top: 100px; border-top: 1px solid var(--line); 
-        }
-        .stat { padding: 40px 20px; border-right: 1px solid var(--line); }
-        .stat:last-child { border-right: none; }
-        .stat .num { font-family: var(--serif); font-size: 42px; margin-bottom: 8px; }
+/* ─── COUNTER ────────────────────────────────────────────── */
+.counter-section{
+  padding:10vh 4vw;
+  background:var(--deep);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.counter-section::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,92,26,.04),transparent);
+  animation:sweep 4s ease-in-out infinite;
+}
+@keyframes sweep{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+.counter-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+  position:relative;z-index:1;
+}
+.counter-item{
+  text-align:center;
+  padding:2.5rem 1rem;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:var(--glass);
+  transition:border-color .4s,transform .4s;
+}
+.counter-item:hover{border-color:rgba(255,92,26,.4);transform:translateY(-4px)}
+.counter-num{
+  font-family:var(--font-head);
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:800;line-height:1;
+  background:linear-gradient(135deg,var(--orange),var(--amber));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:.7rem;
+}
+.counter-label{
+  font-family:var(--font-mono);font-size:.7rem;
+  letter-spacing:.15em;color:var(--muted);text-transform:uppercase;
+}
 
-        @media (max-width: 768px) {
-            .stats { grid-template-columns: repeat(2, 1fr); }
-            .stat:nth-child(2) { border-right: none; }
-            .stat { border-bottom: 1px solid var(--line); }
-        }
+/* ─── CONTACT ────────────────────────────────────────────── */
+#contact{
+  padding:12vh 4vw;
+  position:relative;overflow:hidden;
+}
+.contact-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6rem;
+  align-items:start;
+}
+.contact-info{margin-bottom:3rem}
+.contact-detail{
+  display:flex;gap:1.2rem;align-items:flex-start;
+  padding:1.5rem;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:var(--glass);
+  margin-bottom:1rem;
+  transition:border-color .3s,transform .3s;
+}
+.contact-detail:hover{border-color:rgba(255,92,26,.4);transform:translateX(4px)}
+.contact-icon{
+  width:40px;height:40px;flex-shrink:0;
+  background:rgba(255,92,26,.1);border:1px solid rgba(255,92,26,.25);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+}
+.contact-icon svg{width:18px;height:18px;fill:var(--orange)}
+.contact-dt{
+  font-family:var(--font-mono);font-size:.62rem;
+  letter-spacing:.12em;color:var(--orange);text-transform:uppercase;margin-bottom:.3rem;
+}
+.contact-dv{color:var(--white);font-size:.95rem}
+/* Form */
+.contact-form{display:flex;flex-direction:column;gap:1.2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.form-field{display:flex;flex-direction:column;gap:.5rem}
+.form-field label{
+  font-family:var(--font-mono);font-size:.62rem;
+  letter-spacing:.15em;color:var(--orange);text-transform:uppercase;
+}
+.form-field input,.form-field textarea,.form-field select{
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--white);
+  padding:.85rem 1rem;
+  font-family:var(--font-body);font-size:.95rem;
+  border-radius:3px;outline:none;
+  transition:border-color .3s,box-shadow .3s;
+  width:100%;
+  -webkit-appearance:none;
+  cursor:none;
+}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{
+  border-color:var(--orange);
+  box-shadow:0 0 0 3px rgba(255,92,26,.12);
+}
+.form-field textarea{resize:vertical;min-height:140px}
+.form-field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7a8c' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+  padding-right:2.5rem;
+}
+.form-field select option{background:var(--card)}
+.btn-submit{
+  padding:1rem 2.5rem;
+  background:var(--orange);color:#fff;
+  font-family:var(--font-mono);font-size:.78rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  border:none;border-radius:2px;cursor:none;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  transition:background .25s,transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+  align-self:flex-start;
+}
+.btn-submit::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.btn-submit:hover::before{transform:translateX(100%)}
+.btn-submit:hover{background:var(--amber);transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,92,26,.3)}
 
-        /* ---------- SECTIONS ---------- */
-        section { padding: 120px 0; border-bottom: 1px solid var(--line); }
-        .sec-head { margin-bottom: 64px; }
-        .sec-head h2 { font-family: var(--serif); font-size: clamp(32px, 5vw, 64px); line-height: 1.1; }
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer{
+  padding:4rem 4vw 2rem;
+  border-top:1px solid var(--border);
+  background:var(--deep);
+}
+.footer-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:3rem;flex-wrap:wrap;gap:2rem;
+}
+.footer-logo{
+  font-family:var(--font-head);font-size:1.4rem;font-weight:800;
+  color:var(--white);letter-spacing:.06em;margin-bottom:.8rem;
+}
+.footer-logo span{color:var(--orange)}
+.footer-tagline{font-size:.85rem;color:var(--muted);max-width:260px;line-height:1.6}
+.footer-links{
+  display:flex;gap:3.5rem;flex-wrap:wrap;
+}
+.footer-col h4{
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.2em;color:var(--orange);text-transform:uppercase;
+  margin-bottom:1.2rem;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.footer-col ul li a{
+  color:var(--muted);text-decoration:none;font-size:.88rem;
+  transition:color .2s;
+}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:2rem;border-top:1px solid var(--border);
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-copy{
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.1em;color:var(--muted);
+}
+.footer-made{
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.08em;color:var(--muted);
+}
+.footer-made span{color:var(--orange)}
 
-        /* Services Grid */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--line); }
-        .svc-card { background: var(--ink); padding: 48px; transition: 0.4s; }
-        .svc-card:hover { background: var(--ink-2); }
-        .svc-card .num { color: var(--ember); font-family: var(--mono); margin-bottom: 24px; display: block; }
+/* ─── POPUP / MODAL ──────────────────────────────────────── */
+.modal-backdrop{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(5,5,8,.92);backdrop-filter:blur(20px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+  padding:1rem;
+}
+.modal-backdrop.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  max-width:600px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  padding:3rem;
+  position:relative;
+  transform:translateY(30px) scale(.97);
+  transition:transform .4s var(--ease-out),opacity .4s;
+  opacity:0;
+}
+.modal-backdrop.open .modal{transform:translateY(0) scale(1);opacity:1}
+.modal-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);
+  color:var(--muted);font-size:1.2rem;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:background .25s,color .25s;
+}
+.modal-close:hover{background:rgba(255,92,26,.15);color:var(--orange)}
+.modal-badge{
+  display:inline-block;
+  font-family:var(--font-mono);font-size:.62rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--orange);
+  border:1px solid rgba(255,92,26,.35);
+  padding:.3rem .8rem;border-radius:2px;margin-bottom:1.5rem;
+}
+.modal h3{
+  font-family:var(--font-head);font-size:1.8rem;font-weight:800;
+  margin-bottom:1rem;letter-spacing:-.02em;
+}
+.modal p{color:var(--muted);font-size:.95rem;line-height:1.75;margin-bottom:1.5rem}
+.modal-spec-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.5rem;
+}
+.modal-spec{
+  padding:1rem;background:var(--glass);
+  border:1px solid var(--border);border-radius:4px;
+}
+.modal-spec-key{
+  font-family:var(--font-mono);font-size:.6rem;
+  letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.3rem;
+}
+.modal-spec-val{
+  font-family:var(--font-head);font-size:1.2rem;font-weight:700;
+  color:var(--orange);
+}
 
-        /* Responsive Project Card */
-        .project-card { 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; 
-            margin-bottom: 80px; align-items: center; 
-        }
-        .project-img { aspect-ratio: 16/10; background: var(--ink-2); overflow: hidden; border-radius: 4px; }
-        .project-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        
-        @media (max-width: 860px) {
-            .project-card { grid-template-columns: 1fr; }
-            .project-card.reverse { direction: ltr; } /* Keeps text first on mobile if needed */
-        }
+/* ─── TOAST ──────────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;z-index:3000;
+  background:var(--card);border:1px solid rgba(255,92,26,.5);
+  border-radius:6px;padding:1.2rem 1.5rem;
+  display:flex;align-items:center;gap:.9rem;
+  transform:translateX(120%);transition:transform .5s var(--ease-out);
+  max-width:360px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+}
+.toast.show{transform:translateX(0)}
+.toast-icon{
+  width:36px;height:36px;flex-shrink:0;
+  background:rgba(255,92,26,.15);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.toast-icon svg{width:18px;height:18px;fill:var(--orange)}
+.toast-title{
+  font-family:var(--font-head);font-size:.95rem;font-weight:700;margin-bottom:.2rem;
+}
+.toast-msg{font-size:.82rem;color:var(--muted)}
+.toast-close{
+  margin-left:auto;cursor:none;background:none;border:none;
+  color:var(--muted);font-size:1rem;transition:color .2s;
+  flex-shrink:0;
+}
+.toast-close:hover{color:var(--white)}
 
-        /* Reveal Animation */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+/* ─── SCROLL REVEAL ──────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.left{transform:translateX(-30px)}
+.reveal.right{transform:translateX(30px)}
+.reveal.visible{opacity:1;transform:none}
 
-        footer { padding: 60px 0; background: #070605; text-align: center; font-size: 12px; color: var(--muted); }
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeLeft{
+  from{opacity:0;transform:translateX(25px)}
+  to{opacity:1;transform:translateX(0)}
+}
 
-    </style>
+/* ─── PROGRESS BAR ───────────────────────────────────────── */
+#progress{
+  position:fixed;top:0;left:0;height:2px;z-index:1100;
+  background:linear-gradient(90deg,var(--orange),var(--amber));
+  width:0%;transition:width .1s;
+}
+
+/* ─── BACK TO TOP ────────────────────────────────────────── */
+#btt{
+  position:fixed;bottom:2rem;left:2rem;z-index:500;
+  width:44px;height:44px;
+  background:var(--orange);border:none;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;
+  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  opacity:0;pointer-events:none;
+  transform:translateY(10px);
+  transition:opacity .3s,transform .3s,background .25s;
+}
+#btt.visible{opacity:1;pointer-events:all;transform:none}
+#btt:hover{background:var(--amber)}
+#btt svg{width:18px;height:18px;fill:#fff}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:1100px){
+  .about-visual{height:420px}
+  .about-card-main{height:320px}
+  .counter-grid{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .hero-stats{display:none}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  #about{grid-template-columns:1fr;gap:3rem}
+  .about-visual{height:350px;order:-1}
+  .about-card-main{width:80%;height:280px}
+  .about-card-accent{width:55%;height:180px}
+  .contact-wrap{grid-template-columns:1fr}
+  .project-card{grid-template-columns:1fr}
+  .project-img{height:260px}
+  .footer-top{flex-direction:column}
+  .footer-links{gap:2rem}
+  .services-header{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:600px){
+  nav{padding:1.1rem 5vw}
+  #hero{padding:0 5vw 10vh;justify-content:flex-end}
+  .hero-h1{font-size:clamp(2.8rem,10vw,4rem)}
+  .hero-actions{flex-direction:column;gap:.8rem}
+  .btn-primary,.btn-ghost{justify-content:center}
+  .services-grid{grid-template-columns:1fr}
+  .counter-grid{grid-template-columns:1fr 1fr}
+  #about,#services,#projects,#contact{padding:9vh 5vw}
+  .form-row{grid-template-columns:1fr}
+  .modal{padding:2rem 1.5rem}
+  .modal-spec-grid{grid-template-columns:1fr}
+  .hero-eyebrow{font-size:.65rem}
+  footer{padding:3rem 5vw 2rem}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+
+/* ─── SCROLL BAR ─────────────────────────────────────────── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:3px}
+</style>
 </head>
 <body>
 
-<nav class="top">
-    <div class="wrap row">
-        <a href="#" class="brand"><span class="mark">H</span> HORIZON</a>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="nav-links" id="navLinks">
-            <a href="#about" onclick="toggleMenu()">About</a>
-            <a href="#services" onclick="toggleMenu()">Services</a>
-            <a href="#projects" onclick="toggleMenu()">Projects</a>
-            <a href="#contact" onclick="toggleMenu()">Contact</a>
-        </div>
-        <a href="#contact" class="cta nav-cta" style="padding: 10px 20px; font-size: 11px;">Inquiry</a>
-    </div>
+<!-- Progress bar -->
+<div id="progress"></div>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
+
+<!-- Back to top -->
+<button id="btt" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ─── NAVIGATION ─────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="logo-mark">H</span>
+    HORIZON <span>FUELS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<header class="hero">
-    <div class="hero-bg"></div>
-    <div class="wrap">
-        <div class="hero-grid">
-            <div class="reveal">
-                <span class="mono ember">— Est. 2016 Namibia</span>
-                <h1 class="hero-title">Powering<br>Southern<br>Africa’s <em>Future.</em></h1>
-                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                    <a href="#services" class="cta">Our Services</a>
-                    <a href="#contact" class="cta ghost">Get In Touch</a>
-                </div>
-            </div>
-            <p class="reveal" style="color: var(--bone-2); font-size: 18px; max-width: 400px;">
-                Namibia's premier petroleum partner, delivering world-class logistics and energy solutions across the SADC region.
-            </p>
-        </div>
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mm-link">About</a>
+  <a href="#services" class="mm-link">Services</a>
+  <a href="#projects" class="mm-link">Projects</a>
+  <a href="#contact" class="mm-link">Contact</a>
+  <a href="#contact" class="mm-cta mm-link">Get a Quote →</a>
+</div>
 
-        <div class="stats reveal">
-            <div class="stat"><div class="num">2016</div><div class="mono">Founded</div></div>
-            <div class="stat"><div class="num">SADC</div><div class="mono">Reach</div></div>
-            <div class="stat"><div class="num">100%</div><div class="mono">Local</div></div>
-            <div class="stat"><div class="num">25M+</div><div class="mono">Impact</div></div>
-        </div>
+<!-- ─── HERO ─────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-eyebrow">Est. 2016 — Windhoek, Namibia</div>
+  <h1 class="hero-h1">
+    Powering<br>Southern<br>Africa's <em>Future.</em>
+  </h1>
+  <p class="hero-sub">
+    Namibia's premier petroleum partner delivering world-class logistics and energy solutions across the SADC region. Wholly Namibian-owned.
+  </p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">
+      Our Services
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#contact" class="btn-ghost">
+      Get In Touch
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">Years Active</div>
     </div>
-</header>
+    <div class="stat-item">
+      <div class="stat-num">SADC</div>
+      <div class="stat-label">Regional Reach</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">N$25<span>M</span></div>
+      <div class="stat-label">Investment</div>
+    </div>
+  </div>
 
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ────────────────────────────────────────────── -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <div class="marquee-item"><div class="marquee-dot"></div> Fuel Import & Export</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Bulk Distribution</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Marine Services</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> SADC Logistics</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Namibian Owned</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> 25M Litre Capacity</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Walvis Bay Port</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Lüderitz Port</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Fuel Import & Export</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Bulk Distribution</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Marine Services</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> SADC Logistics</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Namibian Owned</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> 25M Litre Capacity</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Walvis Bay Port</div>
+    <div class="marquee-item"><div class="marquee-dot"></div> Lüderitz Port</div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─────────────────────────────────────────────── -->
 <section id="about">
-    <div class="wrap">
-        <div class="sec-head reveal">
-            <span class="mono ember">— The Company</span>
-            <h2>Innovative Energy.<br>Local Excellence.</h2>
-        </div>
-        <div class="hero-grid" style="align-items: start;">
-            <p style="font-size: 20px; line-height: 1.7; color: var(--bone-2);">
-                Horizon Fuels & Logistics is a wholly Namibian-owned enterprise led by dynamic professionals. We are transforming the fuel distribution landscape through a commitment to integrity and safety.
-            </p>
-            <div style="border-left: 1px solid var(--line); padding-left: 32px;">
-                <span class="mono">Headquarters</span>
-                <p>ERF 136 Jan Jonker Street<br>Windhoek, Namibia</p>
-            </div>
-        </div>
+  <div>
+    <div class="section-eyebrow reveal">The Company</div>
+    <h2 class="section-h2 reveal">Innovative Energy.<br>Local Excellence.</h2>
+    <p class="about-body reveal">
+      Horizon Fuels & Logistics is a wholly Namibian-owned enterprise led by dynamic, forward-thinking professionals. We are transforming the fuel distribution landscape through an unwavering commitment to integrity, safety, and innovation across the SADC region.
+    </p>
+    <div class="about-detail reveal">
+      <div class="detail-row">
+        <div class="detail-label">Headquarters</div>
+        <div class="detail-val">ERF 136, Jan Jonker Street<br>Windhoek, Namibia</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Established</div>
+        <div class="detail-val">2016 — A decade of energy excellence</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Ownership</div>
+        <div class="detail-val">100% Namibian-owned enterprise</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Coverage</div>
+        <div class="detail-val">SADC region — 16 member states</div>
+      </div>
     </div>
+  </div>
+  <div class="about-visual reveal right">
+    <div class="about-card about-card-main">
+      <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=900&q=80" alt="Fuel infrastructure"/>
+    </div>
+    <div class="about-card about-card-accent">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Logistics operations"/>
+    </div>
+    <div class="about-line"></div>
+    <div class="about-badge">
+      <div class="badge-num">100%</div>
+      <div class="badge-text">Local Ownership</div>
+    </div>
+  </div>
 </section>
 
+<!-- ─── COUNTERS ───────────────────────────────────────────── -->
+<div class="counter-section">
+  <div class="counter-grid">
+    <div class="counter-item reveal">
+      <div class="counter-num" data-target="2016" data-prefix="">2016</div>
+      <div class="counter-label">Year Founded</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-num" data-count="25" data-suffix="M L">0</div>
+      <div class="counter-label">Storage Capacity</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-num" data-count="16" data-suffix="+">0</div>
+      <div class="counter-label">SADC Nations Served</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-num" data-count="70" data-suffix="k m²">0</div>
+      <div class="counter-label">Land Area — Katima</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SERVICES ──────────────────────────────────────────── -->
 <section id="services">
-    <div class="wrap">
-        <div class="sec-head reveal">
-            <span class="mono ember">— Expertise</span>
-            <h2>Service Portfolio</h2>
-        </div>
-        <div class="services-grid">
-            <div class="svc-card reveal">
-                <span class="num">01</span>
-                <h3>Fuel Import & Export</h3>
-                <p style="font-size: 14px; margin-top: 16px; color: var(--muted);">Direct procurement from international suppliers with full certification.</p>
-            </div>
-            <div class="svc-card reveal">
-                <span class="num">02</span>
-                <h3>Bulk Distribution</h3>
-                <p style="font-size: 14px; margin-top: 16px; color: var(--muted);">Comprehensive supply chain management across Southern Africa.</p>
-            </div>
-            <div class="svc-card reveal">
-                <span class="num">03</span>
-                <h3>Marine Services</h3>
-                <p style="font-size: 14px; margin-top: 16px; color: var(--muted);">Specialized fueling services at Walvis Bay and Lüderitz ports.</p>
-            </div>
-        </div>
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow reveal">Expertise</div>
+      <h2 class="section-h2 reveal">Service Portfolio</h2>
     </div>
+    <a href="#contact" class="btn-ghost reveal">Request a Service →</a>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card" data-modal="modal-fuel">
+      <span class="service-num">01</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      </div>
+      <h3 class="service-title">Fuel Import & Export</h3>
+      <p class="service-desc">Direct procurement from international suppliers with full certification, compliance, and transparent supply chain management.</p>
+      <div class="service-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+      </div>
+    </div>
+    <div class="service-card" data-modal="modal-dist">
+      <span class="service-num">02</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8zM5.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
+      </div>
+      <h3 class="service-title">Bulk Distribution</h3>
+      <p class="service-desc">Comprehensive supply chain management from procurement to last-mile delivery across all Southern African markets.</p>
+      <div class="service-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+      </div>
+    </div>
+    <div class="service-card" data-modal="modal-marine">
+      <span class="service-num">03</span>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16l-4.5-4.5M3 21l7.5-7.5M12 3l4.5 4.5M8 8l8 8M2 12h3M19 12h3M12 2v3M12 19v3"/></svg>
+      </div>
+      <h3 class="service-title">Marine Services</h3>
+      <p class="service-desc">Specialized bunkering and fueling services at Walvis Bay and Lüderitz ports, servicing commercial and industrial vessels.</p>
+      <div class="service-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ─── PROJECTS ───────────────────────────────────────────── -->
 <section id="projects">
-    <div class="wrap">
-        <div class="sec-head reveal">
-            <span class="mono ember">— Infrastructure</span>
-            <h2>Strategic Projects</h2>
-        </div>
+  <div class="section-eyebrow reveal">Infrastructure</div>
+  <h2 class="section-h2 reveal" style="margin-bottom:3rem">Strategic Projects</h2>
 
-        <div class="project-card reveal">
-            <div class="project-img">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80" alt="Fuel Facility">
-            </div>
-            <div>
-                <span class="mono" style="color: var(--ember);">In Development</span>
-                <h3 style="font-size: 32px; font-family: var(--serif); margin: 12px 0;">Katima Mulilo Storage</h3>
-                <p style="color: var(--bone-2); margin-bottom: 24px;">A N$25 Million investment featuring a 25M litre capacity to enhance regional fuel security.</p>
-                <ul style="list-style: none; font-size: 13px; color: var(--muted);">
-                    <li style="margin-bottom: 8px;">→ 70,000 m² Land Area</li>
-                    <li>→ SADC Market Positioning</li>
-                </ul>
-            </div>
-        </div>
+  <div class="project-card reveal" id="katima-card" style="cursor:none">
+    <div class="project-img">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80" alt="Katima Mulilo Fuel Storage"/>
+      <span class="project-tag">In Development</span>
     </div>
+    <div class="project-info">
+      <div>
+        <h3 class="project-title">Katima Mulilo<br>Fuel Storage Facility</h3>
+        <p class="project-desc">
+          A landmark N$25 million investment positioned at the strategic crossroads of the SADC region. This facility is engineered to enhance Namibia's regional fuel security and create lasting economic impact.
+        </p>
+      </div>
+      <div class="project-specs">
+        <div class="spec-row">
+          <span class="spec-key">Total Investment</span>
+          <span class="spec-val highlight">N$25,000,000</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Storage Capacity</span>
+          <span class="spec-val">25 Million Litres</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Land Area</span>
+          <span class="spec-val">70,000 m²</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Market Positioning</span>
+          <span class="spec-val">SADC Regional Hub</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Status</span>
+          <span class="spec-val highlight">In Development</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="contact" style="background: var(--ink-2);">
-    <div class="wrap">
-        <div class="sec-head reveal">
-            <span class="mono ember">— Contact</span>
-            <h2>Let's connect.</h2>
+<!-- ─── CONTACT ───────────────────────────────────────────── -->
+<section id="contact">
+  <div class="section-eyebrow reveal">Let's Connect</div>
+  <h2 class="section-h2 reveal" style="margin-bottom:3rem">Ready to partner<br>with us?</h2>
+  <div class="contact-wrap">
+    <div>
+      <div class="contact-detail reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
-        <div class="hero-grid">
-            <form style="display: flex; flex-direction: column; gap: 20px;">
-                <input type="text" placeholder="Your Name" style="background: transparent; border: none; border-bottom: 1px solid var(--line); padding: 15px 0; color: white; outline: none;">
-                <input type="email" placeholder="Email Address" style="background: transparent; border: none; border-bottom: 1px solid var(--line); padding: 15px 0; color: white; outline: none;">
-                <textarea placeholder="Message" rows="4" style="background: transparent; border: none; border-bottom: 1px solid var(--line); padding: 15px 0; color: white; outline: none;"></textarea>
-                <button type="submit" class="cta" style="border:none; cursor:pointer;">Send Message</button>
-            </form>
-            <div class="reveal">
-                <div style="margin-bottom: 32px;">
-                    <span class="mono">General Inquiry</span>
-                    <p style="font-size: 20px;">info@horizonfuels.com.na</p>
-                </div>
-                <div>
-                    <span class="mono">Direct Line</span>
-                    <p style="font-size: 20px;">+264 81 276 9281</p>
-                </div>
-            </div>
+        <div>
+          <div class="contact-dt">General Inquiry</div>
+          <div class="contact-dv">info@horizonfuels.com.na</div>
         </div>
+      </div>
+      <div class="contact-detail reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 0114 1.18 2 2 0 0116 3.36v3l2.5 2.5-1.5 5.5 2.5 2.5z"/></svg>
+        </div>
+        <div>
+          <div class="contact-dt">Direct Line</div>
+          <div class="contact-dv">+264 81 276 9281</div>
+        </div>
+      </div>
+      <div class="contact-detail reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <div class="contact-dt">Office Address</div>
+          <div class="contact-dv">ERF 136, Jan Jonker Street, Windhoek, Namibia</div>
+        </div>
+      </div>
     </div>
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="John Doe" required/>
+        </div>
+        <div class="form-field">
+          <label for="company">Company</label>
+          <input type="text" id="company" placeholder="Your Company Ltd"/>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@company.com" required/>
+      </div>
+      <div class="form-field">
+        <label for="service">Service Interest</label>
+        <select id="service">
+          <option value="">Select a service...</option>
+          <option>Fuel Import & Export</option>
+          <option>Bulk Distribution</option>
+          <option>Marine Services</option>
+          <option>Katima Mulilo Project</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us about your requirements..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message →</button>
+    </form>
+  </div>
 </section>
 
+<!-- ─── FOOTER ────────────────────────────────────────────── -->
 <footer>
-    <div class="wrap">
-        <p>&copy; 2026 Horizon Fuels & Logistics Namibia. All Rights Reserved.</p>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">HORIZON <span>FUELS</span></div>
+      <div class="footer-tagline">Powering Southern Africa's future through innovation, integrity, and local excellence.</div>
     </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Fuel Import & Export</a></li>
+          <li><a href="#services">Bulk Distribution</a></li>
+          <li><a href="#services">Marine Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@horizonfuels.com.na">Email Us</a></li>
+          <li><a href="tel:+26481276928">+264 81 276 9281</a></li>
+          <li><a href="#contact">Get a Quote</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Horizon Fuels & Logistics Namibia. All Rights Reserved.</div>
+    <div class="footer-made">Powering the SADC — <span>Est. 2016</span></div>
+  </div>
 </footer>
 
+<!-- ─── MODALS ────────────────────────────────────────────── -->
+<div class="modal-backdrop" id="modal-fuel">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <div class="modal-badge">Service — 01</div>
+    <h3>Fuel Import & Export</h3>
+    <p>We handle direct procurement from certified international suppliers, managing the full pipeline from source to delivery. Our processes are fully compliant with Namibian and international petroleum standards, ensuring every shipment meets quality thresholds.</p>
+    <p>Our network spans key supply hubs and enables competitive pricing and reliable delivery timelines for bulk quantities across the SADC market.</p>
+    <div class="modal-spec-grid">
+      <div class="modal-spec"><div class="modal-spec-key">Compliance</div><div class="modal-spec-val">SADC Certified</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Coverage</div><div class="modal-spec-val">International</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Products</div><div class="modal-spec-val">All Grades</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Lead Time</div><div class="modal-spec-val">On Request</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-dist">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <div class="modal-badge">Service — 02</div>
+    <h3>Bulk Distribution</h3>
+    <p>Comprehensive supply chain management from procurement to last-mile delivery. Our fleet and logistics network covers all Southern African markets with precision scheduling and real-time tracking.</p>
+    <p>We handle bulk volumes for industrial clients, mining operations, agricultural enterprises, and government institutions across the region.</p>
+    <div class="modal-spec-grid">
+      <div class="modal-spec"><div class="modal-spec-key">Region</div><div class="modal-spec-val">All SADC</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Minimum Order</div><div class="modal-spec-val">On Request</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Fleet</div><div class="modal-spec-val">Road & Rail</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Tracking</div><div class="modal-spec-val">Real-time</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-marine">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <div class="modal-badge">Service — 03</div>
+    <h3>Marine Services</h3>
+    <p>Specialized bunkering and fueling services at Walvis Bay and Lüderitz ports. We serve commercial vessels, fishing fleets, and offshore support craft with competitive marine-grade fuel and fast turnaround.</p>
+    <p>Our port-side operations are designed for efficiency, minimizing vessel downtime and maximizing operational continuity for our maritime clients.</p>
+    <div class="modal-spec-grid">
+      <div class="modal-spec"><div class="modal-spec-key">Ports</div><div class="modal-spec-val">Walvis Bay, Lüderitz</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Fuel Grade</div><div class="modal-spec-val">Marine Standard</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Turnaround</div><div class="modal-spec-val">24/7 Ops</div></div>
+      <div class="modal-spec"><div class="modal-spec-key">Volume</div><div class="modal-spec-val">Bulk & Retail</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOAST ──────────────────────────────────────────────── -->
+<div class="toast" id="toast">
+  <div class="toast-icon">
+    <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+  </div>
+  <div>
+    <div class="toast-title">Message Sent!</div>
+    <div class="toast-msg">We'll get back to you within 24 hours.</div>
+  </div>
+  <button class="toast-close" id="toastClose">✕</button>
+</div>
+
 <script>
-    function toggleMenu() {
-        document.getElementById('navLinks').classList.toggle('active');
+// ── CURSOR ──────────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const trail = document.getElementById('cursor-trail');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+setInterval(()=>{
+  tx+=(mx-tx)*.15;ty+=(my-ty)*.15;
+  trail.style.left=tx+'px';trail.style.top=ty+'px';
+},16);
+document.querySelectorAll('a,button,[data-modal]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cursor.style.width='20px';cursor.style.height='20px';
+    cursor.style.background='var(--amber)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cursor.style.width='12px';cursor.style.height='12px';
+    cursor.style.background='var(--orange)';
+  });
+});
+
+// ── NAVBAR SCROLL ───────────────────────────────────────────
+const navbar=document.getElementById('navbar');
+const progress=document.getElementById('progress');
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY;
+  const docH=document.body.scrollHeight-window.innerHeight;
+  progress.style.width=(s/docH*100)+'%';
+  navbar.classList.toggle('scrolled',s>50);
+  btt.classList.toggle('visible',s>400);
+});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// ── HAMBURGER ───────────────────────────────────────────────
+const ham=document.getElementById('hamburger');
+const mmenu=document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  mmenu.classList.toggle('open');
+});
+document.querySelectorAll('.mm-link').forEach(l=>{
+  l.addEventListener('click',()=>{
+    ham.classList.remove('open');
+    mmenu.classList.remove('open');
+  });
+});
+
+// ── SCROLL REVEAL ───────────────────────────────────────────
+const revealEls=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      ro.unobserve(e.target);
     }
+  });
+},{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+revealEls.forEach(el=>ro.observe(el));
 
-    const observerOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, observerOptions);
+// ── COUNT UP ─────────────────────────────────────────────────
+function animateCount(el,target,suffix){
+  let start=null;
+  const dur=1800;
+  function step(ts){
+    if(!start)start=ts;
+    const p=Math.min((ts-start)/dur,1);
+    const ease=1-Math.pow(1-p,4);
+    el.textContent=Math.floor(ease*target)+(suffix||'');
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const countEls=document.querySelectorAll('[data-count]');
+const cro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      animateCount(el,+el.dataset.count,el.dataset.suffix||'');
+      cro.unobserve(el);
+    }
+  });
+},{threshold:.5});
+countEls.forEach(el=>cro.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// ── SERVICE CARD MODALS ──────────────────────────────────────
+document.querySelectorAll('[data-modal]').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const id=card.dataset.modal;
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow='hidden';
+  });
+});
+document.querySelectorAll('[data-close]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.closest('.modal-backdrop').classList.remove('open');
+    document.body.style.overflow='';
+  });
+});
+document.querySelectorAll('.modal-backdrop').forEach(bd=>{
+  bd.addEventListener('click',e=>{
+    if(e.target===bd){bd.classList.remove('open');document.body.style.overflow='';}
+  });
+});
+
+// ── KATIMA PROJECT MODAL ─────────────────────────────────────
+// (clicking project card opens a detail view)
+// already handled by service card handler above if we add data-modal — 
+// using inline click for the project card
+document.getElementById('katima-card').addEventListener('click',()=>{
+  // Show a quick toast style info
+});
+
+// ── CONTACT FORM ─────────────────────────────────────────────
+const toast=document.getElementById('toast');
+const toastClose=document.getElementById('toastClose');
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  toast.classList.add('show');
+  e.target.reset();
+  setTimeout(()=>toast.classList.remove('show'),5000);
+});
+toastClose.addEventListener('click',()=>toast.classList.remove('show'));
+
+// ── KEYBOARD ESC ─────────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-backdrop.open').forEach(m=>{
+      m.classList.remove('open');document.body.style.overflow='';
+    });
+    mmenu.classList.remove('open');ham.classList.remove('open');
+  }
+});
 </script>
-
 </body>
 </html>
-
-```
