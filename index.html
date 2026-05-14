@@ -1,553 +1,880 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Horizon Fuels & Logistics — Powering Southern Africa's Energy Future</title>
-<meta name="description" content="Namibia's premier petroleum and logistics company. Fuel import, export, storage, distribution and breakdown services across the SADC region." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Horizon Fuels & Logistics — Powering Southern Africa</title>
+<meta name="description" content="Namibia's premier petroleum and logistics company. Fuel import, export, storage, distribution across the SADC region."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --brand:#D4A017;
-  --brand-dark:#B88A10;
-  --brand-light:rgba(212,160,23,.1);
-  --accent:#1A3A5C;
-  --accent-light:rgba(26,58,92,.1);
-  --ink:#0A0B0D;
-  --ink-2:#1E2229;
-  --ink-3:#3A3F4A;
-  --muted:#6E7480;
-  --bg:#F4F3EE;
-  --bg-2:#ECEAE4;
-  --card:#FFFFFF;
-  --line:#DDDBD4;
-  --line-2:#CCCAC2;
-  --green:#16A34A;
-  --shadow-sm:0 2px 8px rgba(10,11,13,.08);
-  --shadow:0 8px 24px rgba(10,11,13,.12);
-  --shadow-lg:0 20px 50px rgba(10,11,13,.18);
-  --shadow-brand:0 12px 40px rgba(212,160,23,.3);
-  --radius:12px;
-  --radius-lg:20px;
-  --radius-xl:28px;
+  --fire:#C8390A;
+  --ember:#E05C1A;
+  --gold:#D4941A;
+  --gold-light:rgba(212,148,26,.12);
+  --coal:#0C0C0C;
+  --forge:#111214;
+  --steel:#1A1D22;
+  --iron:#242830;
+  --ash:#3A3F48;
+  --smoke:#5A6070;
+  --mist:#8A9099;
+  --fog:#B0B5BE;
+  --pale:#D8DCE5;
+  --white:#F2F1EE;
+  --line:rgba(255,255,255,.07);
+  --line2:rgba(255,255,255,.12);
+  --r:4px;
+  --r2:10px;
+  --r3:20px;
+  --shadow:0 20px 60px rgba(0,0,0,.6);
+  --shadow-fire:0 12px 40px rgba(200,57,10,.35);
 }
 html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
-body{font-family:"Barlow",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3,h4,h5{font-family:"Barlow Condensed",sans-serif;letter-spacing:-.01em;line-height:1.1;color:var(--ink)}
+body{
+  font-family:"Outfit",system-ui,sans-serif;
+  color:var(--white);background:var(--forge);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:"Bebas Neue",sans-serif;letter-spacing:.02em;line-height:1}
+h4,h5{font-family:"DM Serif Display",Georgia,serif;line-height:1.2}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+img{max-width:100%;display:block;object-fit:cover}
 button{font-family:inherit;cursor:pointer}
 
-.container{max-width:1160px;margin:0 auto;padding:0 20px}
-@media(min-width:480px){.container{padding:0 28px}}
-@media(min-width:1200px){.container{padding:0 32px}}
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--coal)}
+::-webkit-scrollbar-thumb{background:var(--fire);border-radius:2px}
+::selection{background:var(--fire);color:#fff}
 
+/* ── CONTAINERS ── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+@media(min-width:1280px){.wrap{padding:0 40px}}
+
+/* ── BUTTONS ── */
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 22px;border-radius:999px;font-family:"Barlow",sans-serif;
-  font-weight:700;font-size:15px;border:0;cursor:pointer;
-  transition:all .22s cubic-bezier(.16,1,.3,1);white-space:nowrap;
-  -webkit-user-select:none;user-select:none;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:2px;
+  font-family:"Outfit",sans-serif;font-weight:600;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;border:0;cursor:pointer;
+  transition:all .25s cubic-bezier(.16,1,.3,1);white-space:nowrap;
+  position:relative;overflow:hidden;
 }
-.btn:active{transform:scale(.97)!important}
-.btn-primary{background:var(--brand);color:#fff;box-shadow:var(--shadow-brand)}
-.btn-primary:hover{background:var(--brand-dark);transform:translateY(-2px);box-shadow:0 16px 48px rgba(212,160,23,.4)}
-.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(10px)}
-.btn-ghost:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
-.btn-dark{background:var(--ink);color:#fff}
-.btn-dark:hover{background:var(--ink-2);transform:translateY(-2px);box-shadow:var(--shadow)}
-.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--line-2)}
-.btn-outline:hover{border-color:var(--ink);background:var(--ink);color:#fff}
-.btn-sm{padding:9px 16px;font-size:13px}
+.btn::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+  transform:translateX(-100%);transition:transform .4s;
+}
+.btn:hover::after{transform:translateX(100%)}
+.btn:active{transform:scale(.97)}
+.btn-fire{background:var(--fire);color:#fff;box-shadow:var(--shadow-fire)}
+.btn-fire:hover{background:var(--ember);transform:translateY(-2px);box-shadow:0 18px 50px rgba(200,57,10,.5)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid var(--line2)}
+.btn-ghost:hover{border-color:var(--fire);color:var(--fire);transform:translateY(-2px)}
+.btn-outline-fire{background:transparent;color:var(--fire);border:1px solid var(--fire)}
+.btn-outline-fire:hover{background:var(--fire);color:#fff}
 
+/* ── EYEBROW ── */
 .eyebrow{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:5px 13px;border-radius:999px;
-  background:var(--brand-light);color:var(--brand);
-  font-family:"Barlow",sans-serif;font-weight:700;font-size:11px;
-  letter-spacing:.08em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Outfit",sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:16px;
 }
-.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand);flex-shrink:0}
-
-.section{padding:80px 0}
-@media(min-width:768px){.section{padding:100px 0}}
-.section-header{margin-bottom:48px}
-.section-header h2{font-size:clamp(32px,5vw,52px);margin:10px 0 12px}
-.section-header .lede{color:var(--muted);font-size:17px;max-width:600px;line-height:1.65}
-
-/* NAVBAR */
-header.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(244,243,238,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
-  transition:box-shadow .3s;
+.eyebrow::before{
+  content:"";width:32px;height:1px;background:var(--gold);flex-shrink:0;
 }
-header.nav.scrolled{box-shadow:var(--shadow-sm)}
+
+/* ══════════════════════════════
+   NAVBAR
+══════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 40px;
+  transition:background .3s,box-shadow .3s;
+}
+.nav.scrolled{
+  background:rgba(12,12,12,.94);
+  backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 var(--line);
+}
 .nav-inner{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;max-width:1160px;margin:0 auto;gap:12px;
+  max-width:1200px;margin:0 auto;height:72px;
 }
-@media(min-width:480px){.nav-inner{padding:14px 28px}}
-.logo{display:flex;align-items:center;gap:9px;font-family:"Barlow Condensed";font-weight:800;font-size:20px;letter-spacing:.01em;flex-shrink:0}
-.logo-mark{
-  width:36px;height:36px;border-radius:9px;background:var(--accent);
-  color:var(--brand);display:grid;place-items:center;font-size:18px;
-  position:relative;overflow:hidden;flex-shrink:0;
+.logo{
+  display:flex;align-items:center;gap:12px;
+  font-family:"Bebas Neue";font-size:22px;letter-spacing:.04em;
+  color:var(--white);
 }
-.logo-mark::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(135deg,transparent 40%,rgba(212,160,23,.2) 50%,transparent 60%);
+.logo-icon{
+  width:38px;height:38px;background:var(--fire);
+  border-radius:2px;display:grid;place-items:center;
+  font-size:18px;flex-shrink:0;
+  box-shadow:0 0 20px rgba(200,57,10,.4);
 }
-.nav-links{display:none;gap:28px;font-weight:600;font-size:14px;letter-spacing:.01em}
-@media(min-width:820px){.nav-links{display:flex}}
-.nav-links a{color:var(--ink-3);transition:color .18s}
-.nav-links a:hover{color:var(--brand)}
-.nav-right{display:flex;align-items:center;gap:8px}
-.nav-book-btn{padding:9px 18px;font-size:13px}
-
+.nav-links{display:none;gap:36px}
+@media(min-width:900px){.nav-links{display:flex}}
+.nav-links a{
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--fog);transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:"";position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--fire);transition:width .25s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:10px}
 .hamburger{
+  width:36px;height:36px;background:none;border:0;
   display:flex;flex-direction:column;justify-content:center;gap:5px;
-  width:38px;height:38px;background:none;border:0;padding:6px;
-  cursor:pointer;border-radius:8px;transition:background .2s;
+  padding:4px;cursor:pointer;
 }
-.hamburger:hover{background:var(--bg-2)}
-@media(min-width:820px){.hamburger{display:none}}
-.hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;transition:all .28s}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(min-width:900px){.hamburger{display:none}}
+.hamburger span{display:block;width:100%;height:1.5px;background:var(--white);transition:all .28s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
+/* Mobile Menu */
 .mobile-menu{
-  display:none;position:fixed;inset:0;top:65px;z-index:99;
-  background:rgba(244,243,238,.97);backdrop-filter:blur(20px);
-  flex-direction:column;padding:32px 28px;gap:4px;
-  animation:menuIn .25s ease;
+  display:none;position:fixed;inset:0;top:72px;z-index:199;
+  background:rgba(10,10,10,.98);backdrop-filter:blur(30px);
+  flex-direction:column;padding:48px 32px;gap:0;
 }
-.mobile-menu.open{display:flex}
-@keyframes menuIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+.mobile-menu.open{display:flex;animation:slideDown .3s ease}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
 .mobile-menu a{
-  font-family:"Barlow Condensed";font-weight:700;font-size:28px;
-  color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line);
-  display:flex;align-items:center;justify-content:space-between;
-  transition:color .18s;
+  font-family:"Bebas Neue";font-size:48px;color:var(--white);
+  padding:16px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:color .2s;
 }
-.mobile-menu a:hover{color:var(--brand)}
-.mobile-menu a::after{content:"→";font-size:20px;opacity:.4}
-.mobile-menu .mobile-ctas{display:flex;flex-direction:column;gap:10px;margin-top:24px}
-.mobile-menu .mobile-ctas .btn{width:100%;font-size:16px;padding:15px}
+.mobile-menu a:hover{color:var(--fire)}
+.mobile-menu a::after{content:"→";font-size:28px;opacity:.3}
+.mobile-menu-ctas{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.mobile-menu-ctas .btn{width:100%;justify-content:center;padding:16px}
 
-/* HERO */
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
 .hero{
-  position:relative;min-height:100svh;display:flex;align-items:center;
-  color:#fff;overflow:hidden;background:#0A0B0D;
+  position:relative;min-height:100svh;
+  display:flex;align-items:flex-end;
+  overflow:hidden;
 }
-.hero-bg{
+.hero-media{
   position:absolute;inset:0;
-  background:url("https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
+  background:#000;
 }
+.hero-media img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:.55;
+  transform:scale(1.05);
+  animation:heroZoom 12s ease-out forwards;
+}
+@keyframes heroZoom{to{transform:scale(1)}}
 .hero-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(10,11,13,.95) 0%,rgba(10,11,13,.75) 40%,rgba(26,58,92,.4) 100%);
+  background:
+    linear-gradient(to top, rgba(12,12,12,1) 0%, rgba(12,12,12,.6) 40%, transparent 70%),
+    linear-gradient(to right, rgba(12,12,12,.8) 0%, transparent 60%);
 }
-.hero-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.hero-deco::before{
+/* Geometric accent lines */
+.hero-lines{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;
+}
+.hero-lines::before{
   content:"";position:absolute;
-  top:-10%;right:-5%;width:60%;height:120%;
-  border-left:1px solid rgba(255,255,255,.04);
-  transform:rotate(-8deg);
+  top:0;left:calc(55% + 120px);width:1px;height:100%;
+  background:linear-gradient(to bottom,transparent,var(--fire),transparent);
+  opacity:.25;
 }
-.hero-deco::after{
+.hero-lines::after{
   content:"";position:absolute;
-  bottom:-20%;right:10%;width:40%;height:100%;
-  border-left:1px solid rgba(212,160,23,.06);
-  transform:rotate(-8deg);
+  top:30%;right:80px;width:200px;height:200px;
+  border:1px solid rgba(200,57,10,.15);
+  border-radius:50%;
+  transform:rotate(15deg);
 }
-.hero-inner{position:relative;z-index:2;width:100%;padding:120px 0 80px}
-@media(max-width:767px){.hero-inner{padding:100px 0 60px}}
-.hero-grid{
-  display:grid;grid-template-columns:1fr;
-  gap:36px;align-items:start;
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;padding:0 24px 80px;
+  max-width:1200px;margin:0 auto;
 }
-@media(min-width:900px){
-  .hero-grid{grid-template-columns:1.25fr .85fr;gap:48px;align-items:center}
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:7px 14px;border-radius:999px;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-  font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-  backdrop-filter:blur(8px);margin-bottom:20px;
-}
-.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.25);flex-shrink:0}
-.hero h1{
-  font-size:clamp(42px,7vw,80px);font-weight:900;color:#fff;
-  margin-bottom:18px;line-height:1.0;
-}
-.hero h1 .line1{display:block}
-.hero h1 .line2{
-  display:block;
-  background:linear-gradient(110deg,#fff 20%,var(--brand) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.hero p.sub{font-size:clamp(16px,2.2vw,18px);color:rgba(255,255,255,.8);max-width:520px;margin-bottom:28px;line-height:1.7}
-.hero p.sub strong{color:#fff;font-weight:700}
-.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
-.hero-cta .btn{font-size:clamp(14px,2vw,15px);padding:13px 20px}
-@media(max-width:400px){.hero-cta{flex-direction:column}.hero-cta .btn{width:100%}}
-.hero-stats{
-  display:flex;flex-wrap:wrap;gap:0;
-  margin-top:40px;padding-top:32px;
-  border-top:1px solid rgba(255,255,255,.12);
-}
-.hero-stats .stat{
-  flex:1;min-width:90px;padding-right:20px;
-  border-right:1px solid rgba(255,255,255,.12);
-  margin-right:20px;
-}
-.hero-stats .stat:last-child{border-right:0;margin-right:0}
-.hero-stats .stat strong{
-  font-family:"Barlow Condensed";font-size:clamp(26px,4vw,36px);
-  font-weight:900;color:#fff;display:block;line-height:1;
-}
-.hero-stats .stat span{font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.02em}
+@media(min-width:900px){.hero-content{display:grid;grid-template-columns:1.2fr .9fr;gap:60px;align-items:end;padding:0 40px 100px}}
 
-/* Enquiry card */
-.book-card{
-  background:#fff;color:var(--ink);border-radius:var(--radius-xl);
-  padding:28px;box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.05);
-  position:relative;overflow:hidden;
+.hero-left .tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,57,10,.15);border:1px solid rgba(200,57,10,.3);
+  color:var(--ember);padding:6px 14px;border-radius:2px;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:24px;
 }
-.book-card::before{
-  content:"";position:absolute;top:-1px;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--accent),var(--brand),var(--accent));
-  background-size:200%;animation:shimmer 3s infinite linear;
+.hero-left .tag .pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--fire);
+  animation:pulse 2s infinite;
 }
-@keyframes shimmer{0%{background-position:200%}100%{background-position:-200%}}
-.book-card h3{font-size:22px;margin-bottom:4px;font-family:"Barlow Condensed";font-weight:800;letter-spacing:.01em}
-.book-card .small{font-size:13px;color:var(--muted);margin-bottom:20px}
-.book-card label{
-  display:block;font-size:11px;font-weight:700;color:var(--ink-3);
-  margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,57,10,.5)}50%{box-shadow:0 0 0 6px rgba(200,57,10,0)}}
+.hero-left h1{
+  font-size:clamp(72px,10vw,140px);
+  color:var(--white);margin-bottom:0;line-height:.92;
 }
-.book-card input,.book-card select,.book-card textarea{
-  width:100%;padding:11px 13px;border:1.5px solid var(--line);
-  border-radius:10px;font-size:14px;font-family:inherit;
-  margin-bottom:12px;transition:border-color .2s,box-shadow .2s;
-  background:#fff;color:var(--ink);
+.hero-left h1 .fire-word{
+  display:block;
+  -webkit-text-stroke:2px var(--fire);
+  color:transparent;
+  animation:fadeUp .8s .3s both;
+}
+.hero-left h1 .solid-word{
+  display:block;color:var(--white);
+  animation:fadeUp .8s .1s both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.hero-left .sub{
+  font-size:16px;color:var(--fog);line-height:1.75;
+  max-width:500px;margin:24px 0 36px;
+  animation:fadeUp .8s .5s both;
+}
+.hero-left .sub strong{color:var(--white);font-weight:600}
+.hero-cta-group{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .8s .65s both}
+
+/* Stats bar */
+.hero-stats{
+  display:flex;gap:0;margin-top:60px;
+  border-top:1px solid var(--line);
+  padding-top:32px;
+  animation:fadeUp .8s .75s both;
+}
+.hstat{
+  flex:1;padding-right:28px;margin-right:28px;
+  border-right:1px solid var(--line);
+}
+.hstat:last-child{border-right:0;margin-right:0;padding-right:0}
+.hstat strong{
+  font-family:"Bebas Neue";font-size:48px;color:var(--white);
+  display:block;line-height:1;
+}
+.hstat strong em{color:var(--fire);font-style:normal}
+.hstat span{font-size:12px;color:var(--smoke);letter-spacing:.06em;text-transform:uppercase}
+
+/* RIGHT: Enquiry card */
+.hero-card{
+  background:rgba(26,29,34,.85);
+  border:1px solid var(--line2);
+  border-radius:var(--r3);
+  padding:32px;
+  backdrop-filter:blur(20px);
+  box-shadow:var(--shadow);
+  margin-top:60px;
+  animation:fadeUp .8s .4s both;
+}
+@media(min-width:900px){.hero-card{margin-top:0}}
+.hero-card .card-head{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:20px;padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+.hero-card .card-head .fire-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--fire);
+  box-shadow:0 0 10px var(--fire);flex-shrink:0;
+}
+.hero-card .card-head h3{
+  font-family:"DM Serif Display";font-size:20px;font-weight:400;
+  color:var(--white);letter-spacing:0;line-height:1.2;
+}
+.hero-card label{
+  display:block;font-size:10px;font-weight:700;
+  color:var(--smoke);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:6px;margin-top:14px;
+}
+.hero-card input,
+.hero-card select,
+.hero-card textarea{
+  width:100%;padding:11px 14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r2);
+  font-size:13px;font-family:inherit;
+  color:var(--white);
+  transition:border-color .2s,background .2s;
   -webkit-appearance:none;appearance:none;
 }
-.book-card textarea{min-height:80px;resize:vertical}
-.book-card select{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E7480' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;
-  padding-right:36px;
+.hero-card textarea{min-height:72px;resize:vertical}
+.hero-card select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235A6070'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:36px;cursor:pointer;
 }
-.book-card input:focus,.book-card select:focus,.book-card textarea:focus{
-  outline:0;border-color:var(--brand);
-  box-shadow:0 0 0 3px rgba(212,160,23,.12);
+.hero-card select option{background:var(--steel);color:var(--white)}
+.hero-card input:focus,
+.hero-card select:focus,
+.hero-card textarea:focus{
+  outline:0;border-color:var(--fire);
+  background:rgba(200,57,10,.05);
 }
-.book-card .book-cta-btn{width:100%;padding:14px;font-size:15px;border-radius:12px}
-.secure-note{
+.hero-card .card-btn{width:100%;padding:14px;border-radius:var(--r2);margin-top:16px;justify-content:center;font-size:13px}
+.hero-card .note{
+  text-align:center;font-size:11px;color:var(--ash);margin-top:12px;
   display:flex;align-items:center;justify-content:center;gap:6px;
-  font-size:12px;color:var(--muted);margin-top:10px;
 }
-.secure-note::before{content:"🔒"}
 
-/* TRUST BAR */
-.trust{padding:56px 0;background:#fff;border-bottom:1px solid var(--line)}
-.trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(min-width:600px){.trust-grid{grid-template-columns:repeat(4,1fr)}}
-.trust-item{
-  text-align:center;padding:22px 16px;border-radius:var(--radius);
-  border:1px solid var(--line);transition:all .3s;
+/* ══════════════════════════════
+   TRUST STRIP
+══════════════════════════════ */
+.trust-strip{
+  background:var(--coal);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:32px 0;
 }
-.trust-item:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
-.trust-icon{
-  width:52px;height:52px;border-radius:14px;
-  background:linear-gradient(135deg,var(--brand-light),var(--accent-light));
-  display:grid;place-items:center;margin:0 auto 12px;font-size:24px;
+.trust-items{
+  display:flex;gap:0;overflow-x:auto;
+  scrollbar-width:none;
 }
-.trust-item h4{font-size:15px;font-family:"Barlow Condensed";font-weight:700;letter-spacing:.01em;margin-bottom:3px}
-.trust-item p{font-size:13px;color:var(--muted)}
+.trust-items::-webkit-scrollbar{display:none}
+.titem{
+  flex:1;min-width:180px;
+  display:flex;align-items:center;gap:14px;
+  padding:0 32px;
+  border-right:1px solid var(--line);
+}
+.titem:last-child{border-right:0}
+.titem-icon{
+  width:44px;height:44px;flex-shrink:0;
+  background:rgba(200,57,10,.1);border:1px solid rgba(200,57,10,.2);
+  border-radius:var(--r2);display:grid;place-items:center;font-size:20px;
+}
+.titem h5{
+  font-family:"Outfit";font-size:14px;font-weight:700;
+  color:var(--white);margin-bottom:2px;font-style:normal;
+}
+.titem p{font-size:12px;color:var(--smoke)}
 
-/* PRODUCTS / FLEET */
-#products{background:var(--bg)}
-.head-row{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:40px;flex-wrap:wrap;gap:20px;
+/* ══════════════════════════════
+   SPLIT IMAGE SECTIONS
+══════════════════════════════ */
+.split{
+  display:grid;grid-template-columns:1fr;
+  gap:0;
 }
-.filters{display:flex;gap:7px;flex-wrap:wrap}
-.filter-btn{
-  padding:7px 14px;border-radius:999px;background:#fff;
-  border:1.5px solid var(--line);font-size:13px;font-weight:600;
-  cursor:pointer;transition:all .2s;font-family:inherit;color:var(--ink-2);
+@media(min-width:860px){
+  .split{grid-template-columns:1fr 1fr;min-height:580px}
+  .split.rev{direction:rtl}
+  .split.rev>*{direction:ltr}
 }
-.filter-btn:hover,.filter-btn.active{
-  background:var(--ink);color:#fff;border-color:var(--ink);
-  transform:translateY(-1px);box-shadow:var(--shadow-sm);
+.split-img{position:relative;overflow:hidden;min-height:360px}
+@media(min-width:860px){.split-img{min-height:unset}}
+.split-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
 }
-.grid{display:grid;grid-template-columns:1fr;gap:20px}
-@media(min-width:500px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:860px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1100px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{
-  background:#fff;border-radius:var(--radius-lg);overflow:hidden;
-  border:1px solid var(--line);
-  transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;
+.split-img:hover img{transform:scale(1.04)}
+.split-img .img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(12,12,12,.5),transparent);
 }
-.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.card .img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg-2);display:flex;align-items:center;justify-content:center}
-.card .img img{width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.16,1,.3,1)}
-.card:hover .img img{transform:scale(1.07)}
-.card .img .fuel-icon{font-size:56px;opacity:.18}
-.card .badge{
-  position:absolute;top:10px;left:10px;
-  background:var(--ink);color:#fff;padding:3px 9px;
-  border-radius:999px;font-size:10px;font-weight:700;
-  letter-spacing:.05em;text-transform:uppercase;
+.split-img .img-badge{
+  position:absolute;bottom:24px;left:24px;
+  background:var(--fire);color:#fff;
+  font-family:"Bebas Neue";font-size:13px;letter-spacing:.1em;
+  padding:6px 14px;border-radius:2px;
 }
-.card .id-badge{
-  position:absolute;bottom:10px;right:10px;
-  background:rgba(10,11,13,.8);color:var(--brand);
-  padding:3px 9px;border-radius:6px;
-  font-family:"Barlow Condensed";font-size:13px;font-weight:800;
-  backdrop-filter:blur(6px);
+.split-text{
+  background:var(--steel);
+  padding:60px 48px;
+  display:flex;flex-direction:column;justify-content:center;
 }
-.card .body{padding:16px}
-.card h3{font-size:20px;margin-bottom:2px;font-family:"Barlow Condensed";font-weight:800}
-.card .dims{font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5}
-.card .price{display:flex;align-items:baseline;gap:4px;margin-bottom:4px}
-.card .price strong{font-family:"Barlow Condensed";font-size:22px;color:var(--accent);font-weight:900;line-height:1}
-.card .deposit{font-size:11px;color:var(--muted);margin-bottom:14px}
-.card .btn{width:100%;padding:10px;font-size:13px;border-radius:10px}
+.split-text h2{
+  font-size:clamp(44px,5vw,72px);
+  color:var(--white);margin-bottom:20px;
+}
+.split-text .body{
+  font-size:16px;color:var(--fog);line-height:1.8;
+  margin-bottom:28px;
+}
+.split-text ul{
+  list-style:none;display:flex;flex-direction:column;gap:12px;
+  margin-bottom:32px;
+}
+.split-text ul li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14px;color:var(--pale);
+}
+.split-text ul li::before{
+  content:"";width:18px;height:18px;flex-shrink:0;margin-top:2px;
+  background:var(--fire);border-radius:2px;
+  clip-path:polygon(14% 44%,0 65%,50% 100%,100% 0,80% 0,43% 72%);
+}
 
-/* WHY */
-#why{background:#fff}
-.why-grid{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:500px){.why-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:900px){.why-grid{grid-template-columns:repeat(4,1fr)}}
-.why-item{
-  padding:28px;border-radius:var(--radius-lg);
-  background:var(--bg);border:1px solid var(--line);
-  transition:all .3s cubic-bezier(.16,1,.3,1);
+/* ══════════════════════════════
+   PRODUCTS SECTION
+══════════════════════════════ */
+#products{
+  padding:100px 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(200,57,10,.06) 0%, transparent 70%),
+    var(--forge);
+}
+.section-head{margin-bottom:60px}
+.section-head h2{
+  font-size:clamp(48px,6vw,88px);
+  color:var(--white);margin-bottom:16px;
+}
+.section-head h2 span{color:var(--fire)}
+.section-head .lede{font-size:17px;color:var(--smoke);max-width:580px;line-height:1.7}
+.filter-bar{
+  display:flex;gap:6px;flex-wrap:wrap;
+  margin-bottom:48px;
+}
+.fb{
+  padding:9px 20px;background:transparent;
+  border:1px solid var(--line2);color:var(--smoke);
+  font-family:"Outfit";font-size:12px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  border-radius:2px;cursor:pointer;transition:all .2s;
+}
+.fb:hover,.fb.on{background:var(--fire);border-color:var(--fire);color:#fff}
+
+.products-grid{
+  display:grid;grid-template-columns:1fr;gap:2px;
+}
+@media(min-width:500px){.products-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:860px){.products-grid{grid-template-columns:repeat(4,1fr)}}
+
+.pcard{
+  position:relative;overflow:hidden;
+  background:var(--iron);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+  cursor:pointer;
+}
+.pcard:hover{transform:scale(1.02);z-index:2}
+.pcard .pimg{
+  position:relative;aspect-ratio:3/4;overflow:hidden;
+}
+.pcard .pimg img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.8);
+  transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s;
+}
+.pcard:hover .pimg img{transform:scale(1.08);filter:saturate(1)}
+.pcard .pimg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(12,12,12,.95) 0%,rgba(12,12,12,.2) 50%,transparent 80%);
+}
+.pcard .pbadge{
+  position:absolute;top:16px;left:16px;z-index:2;
+  background:var(--fire);color:#fff;
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:1px;
+}
+.pcard .pbody{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:24px 20px;
+}
+.pcard h3{
+  font-family:"Bebas Neue";font-size:32px;
+  color:var(--white);line-height:1;margin-bottom:4px;
+}
+.pcard .pspec{font-size:12px;color:var(--smoke);letter-spacing:.04em;margin-bottom:14px}
+.pcard .penq{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--fire);opacity:0;transform:translateY(8px);
+  transition:all .3s;
+}
+.pcard:hover .penq{opacity:1;transform:none}
+.pcard .penq::after{content:"→"}
+
+/* ══════════════════════════════
+   MISSION (Dark accent section)
+══════════════════════════════ */
+#mission{
+  background:var(--fire);
+  padding:100px 0;
   position:relative;overflow:hidden;
 }
-.why-item::before{
-  content:"";position:absolute;bottom:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--accent),var(--brand));
-  transform:scaleX(0);transform-origin:left;transition:transform .35s;
+#mission::before{
+  content:"";position:absolute;
+  top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;
+  background:rgba(255,255,255,.05);
 }
-.why-item:hover{background:var(--ink);transform:translateY(-4px);box-shadow:var(--shadow)}
-.why-item:hover::before{transform:scaleX(1)}
-.why-item:hover .why-num,.why-item:hover h4,.why-item:hover p{color:#fff}
-.why-num{font-family:"Barlow Condensed";font-size:13px;color:var(--brand);font-weight:800;margin-bottom:10px;letter-spacing:.05em}
-.why-item h4{font-size:18px;margin-bottom:7px;transition:color .3s}
-.why-item p{font-size:14px;color:var(--muted);transition:color .3s;line-height:1.6}
+#mission::after{
+  content:"HORIZON";
+  position:absolute;right:-20px;bottom:-40px;
+  font-family:"Bebas Neue";font-size:200px;color:rgba(0,0,0,.1);
+  letter-spacing:.05em;line-height:1;pointer-events:none;
+}
+.mission-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr;gap:48px;
+}
+@media(min-width:860px){.mission-inner{grid-template-columns:1fr 1fr;gap:80px;align-items:center}}
+.mission-left .eyebrow{color:rgba(255,255,255,.7)}
+.mission-left .eyebrow::before{background:rgba(255,255,255,.7)}
+.mission-left h2{
+  font-size:clamp(52px,6vw,88px);
+  color:#fff;margin-bottom:24px;
+}
+.mission-left p{font-size:17px;color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:16px}
+.mission-values{display:flex;flex-direction:column;gap:16px}
+.mval{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r2);padding:20px 24px;
+  display:flex;align-items:flex-start;gap:16px;
+  backdrop-filter:blur(10px);
+  transition:background .25s;
+}
+.mval:hover{background:rgba(255,255,255,.18)}
+.mval .vi{font-size:22px;flex-shrink:0;margin-top:2px}
+.mval h5{font-family:"Outfit";font-size:15px;font-weight:700;font-style:normal;color:#fff;margin-bottom:4px}
+.mval p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.55}
 
-/* SERVICES */
-#services{background:var(--bg)}
-.services-grid{display:grid;grid-template-columns:1fr;gap:20px}
-@media(min-width:640px){.services-grid{grid-template-columns:1fr 1fr}}
+/* ══════════════════════════════
+   WHY US
+══════════════════════════════ */
+#why{
+  padding:100px 0;
+  background:var(--coal);
+}
+.why-grid{
+  display:grid;grid-template-columns:1fr;gap:2px;
+  margin-top:60px;
+}
+@media(min-width:500px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.why-grid{grid-template-columns:repeat(4,1fr)}}
+.wcard{
+  background:var(--steel);padding:40px 32px;
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.wcard:hover{background:var(--iron)}
+.wcard::after{
+  content:"";position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--fire);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.wcard:hover::after{transform:scaleX(1)}
+.wnum{
+  font-family:"Bebas Neue";font-size:72px;color:rgba(200,57,10,.12);
+  line-height:1;margin-bottom:20px;transition:color .3s;
+}
+.wcard:hover .wnum{color:rgba(200,57,10,.25)}
+.wcard h4{
+  font-size:20px;font-weight:400;color:var(--white);
+  margin-bottom:12px;
+}
+.wcard p{font-size:14px;color:var(--smoke);line-height:1.7}
+
+/* ══════════════════════════════
+   SERVICES
+══════════════════════════════ */
+#services{
+  padding:100px 0;
+  background:var(--forge);
+}
+.services-grid{
+  display:grid;grid-template-columns:1fr;gap:24px;
+  margin-top:60px;
+}
 @media(min-width:860px){.services-grid{grid-template-columns:repeat(3,1fr)}}
 .svc{
-  padding:32px;background:#fff;border-radius:var(--radius-xl);
-  border:1px solid var(--line);position:relative;overflow:hidden;
-  transition:transform .3s,box-shadow .3s;
+  position:relative;border-radius:var(--r3);overflow:hidden;
+  min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;
 }
-.svc:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.svc-accent{
-  position:absolute;top:0;left:0;width:100%;height:4px;
-  background:linear-gradient(90deg,var(--accent),var(--brand));
-  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+.svc-img{
+  position:absolute;inset:0;
 }
-.svc:hover .svc-accent{transform:scaleX(1)}
+.svc-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.svc:hover .svc-img img{transform:scale(1.06)}
+.svc-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,10,10,.95) 0%,rgba(10,10,10,.4) 50%,transparent 80%);
+  transition:background .4s;
+}
+.svc:hover .svc-overlay{
+  background:linear-gradient(to top,rgba(10,10,10,.97) 0%,rgba(10,10,10,.6) 60%,rgba(200,57,10,.1) 100%);
+}
+.svc-body{
+  position:relative;z-index:2;padding:32px;
+}
 .svc-icon{
-  width:54px;height:54px;border-radius:14px;
-  background:linear-gradient(135deg,var(--brand-light),var(--accent-light));
-  display:grid;place-items:center;font-size:26px;margin-bottom:18px;
+  width:48px;height:48px;background:var(--fire);
+  border-radius:var(--r);display:grid;place-items:center;
+  font-size:22px;margin-bottom:16px;
+  box-shadow:0 8px 24px rgba(200,57,10,.4);
 }
-.svc h4{font-size:22px;margin-bottom:8px;font-family:"Barlow Condensed";font-weight:800}
-.svc p{color:var(--muted);font-size:15px;margin-bottom:16px;line-height:1.65}
-.svc a{
-  color:var(--brand);font-weight:700;font-size:14px;
-  display:inline-flex;align-items:center;gap:5px;
-  transition:gap .2s;
+.svc h4{
+  font-size:26px;font-weight:400;color:var(--white);
+  margin-bottom:10px;
 }
-.svc a:hover{gap:9px}
+.svc p{font-size:14px;color:var(--fog);line-height:1.7;margin-bottom:20px}
+.svc-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--fire);transition:gap .25s;
+}
+.svc-link::after{content:"→"}
+.svc:hover .svc-link{gap:12px}
 
-/* PROJECTS SECTION */
-#projects{background:#fff}
-.projects-grid{display:grid;grid-template-columns:1fr;gap:24px}
-@media(min-width:640px){.projects-grid{grid-template-columns:1fr 1fr}}
-.project-card{
-  background:var(--bg);border-radius:var(--radius-xl);
-  border:1px solid var(--line);padding:32px;
-  position:relative;overflow:hidden;
-  transition:transform .3s,box-shadow .3s;
-}
-.project-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.project-card::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--accent),var(--brand));
-}
-.project-card h4{font-size:22px;font-family:"Barlow Condensed";font-weight:800;margin-bottom:6px}
-.project-card .proj-tag{
-  display:inline-block;background:var(--accent);color:#fff;
-  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  padding:3px 10px;border-radius:999px;margin-bottom:14px;
-}
-.project-card .proj-meta{display:flex;flex-direction:column;gap:10px}
-.proj-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-size:13px}
-.proj-row .label{color:var(--muted);font-weight:600;flex-shrink:0;min-width:90px}
-.proj-row .val{color:var(--ink);font-weight:500;text-align:right}
-.proj-benefits{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.proj-benefits h6{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px;font-family:"Barlow",sans-serif}
-.proj-benefits ul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.proj-benefits ul li{font-size:13px;color:var(--ink-3);padding-left:16px;position:relative;line-height:1.5}
-.proj-benefits ul li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:700}
-
-/* CTA BANNER */
-.cta-banner{
-  background:var(--ink);color:#fff;padding:72px 0;
+/* ══════════════════════════════
+   PROJECTS
+══════════════════════════════ */
+#projects{
+  padding:100px 0;
+  background:var(--coal);
   position:relative;overflow:hidden;
 }
-.cta-banner::before{
-  content:"";position:absolute;right:-80px;top:-80px;
-  width:400px;height:400px;border-radius:50%;
-  background:radial-gradient(circle,rgba(26,58,92,.5),transparent 70%);
+#projects::before{
+  content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,.015) 60px,
+      rgba(255,255,255,.015) 61px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 80px,
+      rgba(255,255,255,.015) 80px,
+      rgba(255,255,255,.015) 81px
+    );
+  pointer-events:none;
 }
-.cta-banner::after{
-  content:"";position:absolute;left:-40px;bottom:-40px;
-  width:280px;height:280px;border-radius:50%;
-  background:radial-gradient(circle,rgba(212,160,23,.15),transparent 70%);
+.projects-grid{
+  display:grid;grid-template-columns:1fr;gap:24px;
+  margin-top:60px;position:relative;z-index:2;
 }
-.cta-inner{
-  position:relative;z-index:2;
-  display:grid;grid-template-columns:1fr;gap:32px;
-}
-@media(min-width:760px){.cta-inner{grid-template-columns:2fr 1fr;align-items:center}}
-.cta-banner h2{color:#fff;font-size:clamp(28px,5vw,46px);margin-bottom:10px;font-weight:900}
-.cta-banner p{color:rgba(255,255,255,.72);font-size:17px;margin-bottom:20px;max-width:500px}
-.phones{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
-.phone{
-  display:flex;align-items:center;gap:8px;color:#fff;
-  font-weight:700;font-size:14px;transition:opacity .2s;
-}
-.phone:hover{opacity:.8}
-.phone span{color:var(--brand);font-family:"Barlow Condensed";font-size:16px;letter-spacing:.01em}
-.cta-actions{display:flex;flex-direction:column;gap:10px}
-.cta-actions .btn{font-size:15px;padding:14px 24px}
-
-/* CONTACT */
-#contact{background:#fff}
-.contact-grid{display:grid;grid-template-columns:1fr;gap:40px}
-@media(min-width:768px){.contact-grid{grid-template-columns:1fr 1.3fr}}
-.contact-info{display:flex;flex-direction:column;gap:20px}
-.info-item{display:flex;gap:14px;align-items:flex-start}
-.info-icon{
-  width:42px;height:42px;border-radius:11px;
-  background:var(--brand-light);color:var(--brand);
-  display:grid;place-items:center;font-size:17px;flex-shrink:0;
-  border:1px solid rgba(212,160,23,.15);
-}
-.info-item h5{
-  font-size:14px;font-family:"Barlow",sans-serif;font-weight:700;
-  margin-bottom:3px;color:var(--ink);
-}
-.info-item p,.info-item a{font-size:14px;color:var(--muted);line-height:1.6}
-.info-item a:hover{color:var(--brand)}
-form.contact-form{
-  background:var(--bg);padding:28px;border-radius:var(--radius-xl);
+@media(min-width:860px){.projects-grid{grid-template-columns:1fr 1fr}}
+.prj{
+  background:var(--steel);
   border:1px solid var(--line);
+  border-radius:var(--r3);
+  overflow:hidden;
+  transition:transform .35s,box-shadow .35s;
 }
-@media(min-width:480px){form.contact-form{padding:32px}}
-form.contact-form label{
-  display:block;font-size:11px;font-weight:700;color:var(--ink-3);
-  margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;
+.prj:hover{transform:translateY(-6px);box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.prj-img{height:260px;overflow:hidden;position:relative}
+.prj-img img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.7);
+  transition:transform .6s,filter .4s;
 }
-form.contact-form input,form.contact-form textarea{
-  width:100%;padding:11px 13px;border:1.5px solid var(--line-2);
-  border-radius:10px;font-size:14px;font-family:inherit;
-  margin-bottom:14px;background:#fff;transition:border-color .2s,box-shadow .2s;
-  color:var(--ink);
+.prj:hover .prj-img img{transform:scale(1.05);filter:saturate(1)}
+.prj-img .prj-status{
+  position:absolute;top:20px;left:20px;
+  background:var(--fire);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 14px;border-radius:2px;
 }
-form.contact-form input:focus,form.contact-form textarea:focus{
-  outline:0;border-color:var(--brand);
-  box-shadow:0 0 0 3px rgba(212,160,23,.12);
+.prj-body{padding:32px}
+.prj-body h4{
+  font-size:24px;font-weight:400;color:var(--white);margin-bottom:20px;
 }
-form.contact-form textarea{min-height:110px;resize:vertical}
-form.contact-form .btn{width:100%;padding:14px;font-size:15px;border-radius:12px}
+.prj-meta{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.pmrow{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:10px 0;border-bottom:1px solid var(--line);
+  font-size:13px;gap:16px;
+}
+.pmrow:last-child{border-bottom:0}
+.pmrow .lbl{color:var(--smoke);font-weight:600;flex-shrink:0;min-width:100px}
+.pmrow .val{color:var(--pale);text-align:right}
+.prj-bullets{
+  list-style:none;display:flex;flex-direction:column;gap:8px;
+  padding-top:16px;border-top:1px solid var(--line);
+}
+.prj-bullets li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:var(--fog);
+}
+.prj-bullets li::before{
+  content:"";width:14px;height:14px;flex-shrink:0;margin-top:2px;
+  background:var(--fire);border-radius:1px;
+  clip-path:polygon(14% 44%,0 65%,50% 100%,100% 0,80% 0,43% 72%);
+}
 
-/* FOOTER */
-footer{background:var(--ink);color:rgba(255,255,255,.6);padding:60px 0 28px}
-.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:40px}
-@media(min-width:640px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+/* ══════════════════════════════
+   CTA BANNER
+══════════════════════════════ */
+.cta-band{
+  position:relative;overflow:hidden;
+  min-height:520px;display:flex;align-items:center;
+}
+.cta-band-bg{position:absolute;inset:0}
+.cta-band-bg img{width:100%;height:100%;object-fit:cover;opacity:.3}
+.cta-band-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--coal) 40%,rgba(200,57,10,.3) 100%);
+}
+.cta-band-inner{
+  position:relative;z-index:2;
+  width:100%;padding:80px 24px;
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:40px;
+}
+@media(min-width:760px){.cta-band-inner{grid-template-columns:1.5fr 1fr;align-items:center;padding:80px 40px}}
+.cta-band h2{
+  font-size:clamp(48px,6vw,84px);color:var(--white);margin-bottom:16px;
+}
+.cta-band h2 span{color:var(--fire)}
+.cta-band p{font-size:17px;color:var(--fog);line-height:1.75;margin-bottom:28px;max-width:480px}
+.contacts-stack{display:flex;flex-direction:column;gap:14px}
+.cinfo{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 20px;background:rgba(255,255,255,.05);
+  border:1px solid var(--line);border-radius:var(--r2);
+  transition:border-color .25s,background .25s;
+}
+.cinfo:hover{border-color:var(--fire);background:rgba(200,57,10,.06)}
+.cinfo .ci-icon{
+  width:36px;height:36px;flex-shrink:0;
+  background:var(--fire);border-radius:var(--r);
+  display:grid;place-items:center;font-size:16px;
+}
+.cinfo .ci-label{font-size:11px;color:var(--smoke);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.cinfo .ci-val{font-size:14px;color:var(--white);font-weight:600}
+.cta-btns{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.cta-btns .btn{justify-content:center}
+
+/* ══════════════════════════════
+   CONTACT
+══════════════════════════════ */
+#contact{padding:100px 0;background:var(--forge)}
+.contact-grid{
+  display:grid;grid-template-columns:1fr;gap:48px;
+  margin-top:60px;
+}
+@media(min-width:860px){.contact-grid{grid-template-columns:.9fr 1.3fr}}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.ci2{
+  display:flex;gap:16px;align-items:flex-start;padding:20px;
+  background:var(--steel);border:1px solid var(--line);border-radius:var(--r2);
+  transition:border-color .25s;
+}
+.ci2:hover{border-color:rgba(200,57,10,.3)}
+.ci2-icon{
+  width:44px;height:44px;flex-shrink:0;
+  background:rgba(200,57,10,.12);border:1px solid rgba(200,57,10,.2);
+  border-radius:var(--r);display:grid;place-items:center;font-size:18px;
+}
+.ci2 h5{font-size:13px;font-style:normal;font-weight:700;color:var(--fog);margin-bottom:3px;font-family:"Outfit";letter-spacing:.04em;text-transform:uppercase}
+.ci2 p,.ci2 a{font-size:14px;color:var(--white);line-height:1.6}
+.ci2 a:hover{color:var(--fire)}
+.partners-strip{
+  padding:24px;background:var(--steel);
+  border:1px solid var(--line);border-radius:var(--r2);
+}
+.partners-strip h6{
+  font-family:"Outfit";font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--smoke);margin-bottom:12px;
+}
+.partners-strip p{font-size:13px;color:var(--fog);line-height:1.7}
+
+.cform{
+  background:var(--steel);
+  border:1px solid var(--line);
+  border-radius:var(--r3);
+  padding:40px;
+}
+.cform label{
+  display:block;font-size:10px;font-weight:700;
+  color:var(--smoke);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:6px;margin-top:16px;
+}
+.cform label:first-child{margin-top:0}
+.cform input,.cform textarea{
+  width:100%;padding:12px 14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r2);
+  font-size:14px;font-family:inherit;
+  color:var(--white);
+  transition:border-color .2s,background .2s;
+}
+.cform textarea{min-height:120px;resize:vertical}
+.cform input:focus,.cform textarea:focus{
+  outline:0;border-color:var(--fire);
+  background:rgba(200,57,10,.04);
+}
+.cform .btn{width:100%;padding:15px;justify-content:center;margin-top:20px;font-size:13px}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer{
+  background:var(--coal);
+  border-top:1px solid var(--line);
+  padding:64px 0 28px;
+}
+.foot-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  margin-bottom:48px;
+}
+@media(min-width:640px){.foot-grid{grid-template-columns:2.5fr 1fr 1fr 1fr}}
 footer h6{
-  font-family:"Barlow Condensed";color:#fff;font-size:13px;
-  margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;
+  font-family:"Outfit";font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--smoke);margin-bottom:16px;
 }
-footer ul{list-style:none}
-footer ul li{margin-bottom:7px;font-size:13px}
-footer ul li a{transition:color .18s}
-footer ul li a:hover{color:var(--brand)}
-footer .logo{color:#fff;margin-bottom:12px}
-footer .logo .logo-mark{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
-.foot-desc{font-size:13px;max-width:260px;line-height:1.7}
-.copy{
-  border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
+footer ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+footer ul a{font-size:13px;color:var(--ash);transition:color .2s}
+footer ul a:hover{color:var(--white)}
+footer .foot-brand{color:var(--white);margin-bottom:16px}
+footer .foot-desc{font-size:13px;color:var(--ash);max-width:260px;line-height:1.7}
+.foot-fire{
+  display:inline-block;background:var(--fire);color:#fff;
+  font-family:"Bebas Neue";font-size:11px;letter-spacing:.15em;
+  padding:4px 10px;border-radius:2px;margin-top:12px;
+}
+.foot-copy{
+  border-top:1px solid var(--line);padding-top:24px;
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
-  font-size:12px;color:rgba(255,255,255,.4);
+  font-size:12px;color:var(--ash);
 }
 
-/* FLOATING WHATSAPP */
+/* FLOAT WHATSAPP */
 .float-wa{
-  position:fixed;bottom:20px;right:20px;
-  width:54px;height:54px;border-radius:50%;
-  background:#25D366;color:#fff;display:grid;place-items:center;
-  box-shadow:0 10px 28px rgba(37,211,102,.5);z-index:60;
-  font-size:26px;transition:transform .25s,box-shadow .25s;
+  position:fixed;bottom:24px;right:24px;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;color:#fff;
+  display:grid;place-items:center;font-size:26px;
+  box-shadow:0 10px 30px rgba(37,211,102,.45);
+  z-index:100;transition:transform .25s,box-shadow .25s;
 }
-.float-wa:hover{transform:scale(1.12);box-shadow:0 14px 36px rgba(37,211,102,.6)}
-@media(min-width:768px){.float-wa{bottom:28px;right:28px;width:58px;height:58px;font-size:28px}}
+.float-wa:hover{transform:scale(1.1);box-shadow:0 16px 40px rgba(37,211,102,.6)}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
-
-/* MISSION SECTION */
-#mission{background:var(--accent);color:#fff;padding:80px 0}
-.mission-grid{display:grid;grid-template-columns:1fr;gap:40px}
-@media(min-width:768px){.mission-grid{grid-template-columns:1fr 1fr;gap:60px;align-items:start}}
-.mission-block h2{color:#fff;font-size:clamp(28px,4vw,44px);margin-bottom:16px}
-.mission-block p{color:rgba(255,255,255,.8);font-size:16px;line-height:1.75}
-.values-list{display:flex;flex-direction:column;gap:14px}
-.value-item{
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
-  border-radius:var(--radius);padding:16px 20px;
-  display:flex;align-items:flex-start;gap:12px;
-}
-.value-item .v-icon{font-size:20px;flex-shrink:0;margin-top:2px}
-.value-item h5{font-size:15px;font-family:"Barlow",sans-serif;font-weight:700;color:#fff;margin-bottom:3px}
-.value-item p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5}
-
-::selection{background:var(--brand);color:#fff}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-l.in{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-r.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<header class="nav" id="navbar">
+<!-- NAV -->
+<header class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="logo">
-      <span class="logo-mark">⛽</span>
-      <span>Horizon Fuels</span>
+      <span class="logo-icon">⛽</span>
+      <span>HORIZON FUELS</span>
     </a>
     <nav class="nav-links">
       <a href="#products">Products</a>
@@ -556,281 +883,257 @@ footer .logo .logo-mark{background:rgba(255,255,255,.08);border:1px solid rgba(2
       <a href="#why">Why Us</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="nav-right">
-      <a href="#enquire" class="btn btn-primary nav-book-btn">Get a Quote</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="nav-cta">
+      <a href="#hero-enquire" class="btn btn-fire" style="display:none" id="nav-quote">Get a Quote</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
-<!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#products" class="mobile-nav-link">Products</a>
-  <a href="#services" class="mobile-nav-link">Services</a>
-  <a href="#projects" class="mobile-nav-link">Projects</a>
-  <a href="#why" class="mobile-nav-link">Why Us</a>
-  <a href="#contact" class="mobile-nav-link">Contact</a>
-  <div class="mobile-ctas">
-    <a href="#enquire" class="btn btn-primary">⛽ Get a Quote</a>
-    <a href="tel:+264812769281" class="btn btn-outline">📞 +264 81 276 9281</a>
+  <a href="#products" class="mnl">Products</a>
+  <a href="#services" class="mnl">Services</a>
+  <a href="#projects" class="mnl">Projects</a>
+  <a href="#why" class="mnl">Why Us</a>
+  <a href="#contact" class="mnl">Contact</a>
+  <div class="mobile-menu-ctas">
+    <a href="#hero-enquire" class="btn btn-fire mnl">⛽ Get a Quote</a>
+    <a href="tel:+264812769281" class="btn btn-ghost">📞 +264 81 276 9281</a>
   </div>
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
+<section class="hero" id="hero">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?auto=format&fit=crop&w=2000&q=80" alt="Fuel tanker on African highway at sunset"/>
+  </div>
   <div class="hero-overlay"></div>
-  <div class="hero-deco"></div>
-  <div class="hero-inner">
-    <div class="container">
-      <div class="hero-grid">
-        <!-- Left: Copy -->
-        <div>
-          <div class="hero-eyebrow">
-            <span class="dot"></span>
-            Established 2016 · Wholly Namibian-Owned
-          </div>
-          <h1>
-            <span class="line1">Powering Southern</span>
-            <span class="line2">Africa's Future.</span>
-          </h1>
-          <p class="sub">
-            Namibia's premier petroleum &amp; logistics company. <strong>End-to-end fuel supply</strong> — from import and storage to distribution across the SADC region.
-          </p>
-          <div class="hero-cta">
-            <a href="#enquire" class="btn btn-primary">Request a Quote →</a>
-            <a href="tel:+264812769281" class="btn btn-ghost">📞 Call Us Now</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat"><strong>2016</strong><span>Est. in Windhoek</span></div>
-            <div class="stat"><strong>SADC</strong><span>Regional coverage</span></div>
-            <div class="stat"><strong>100%</strong><span>Namibian-owned</span></div>
-          </div>
-        </div>
-
-        <!-- Right: Enquiry card -->
-        <div id="enquire" class="book-card">
-          <h3>⛽ Quick Enquiry</h3>
-          <p class="small">Tell us your fuel or logistics needs — we'll respond fast.</p>
-          <label>Service Required</label>
-          <select id="bk-type">
-            <option>Fuel Supply — Bulk Diesel / Petrol</option>
-            <option>Jet A1 Aviation Fuel</option>
-            <option>LPG / Gas Solutions</option>
-            <option>Fuel Storage &amp; Handling</option>
-            <option>Logistics &amp; Transportation</option>
-            <option>Breakdown / Emergency Supply</option>
-            <option>Other / General Enquiry</option>
-          </select>
-          <label>Company / Organisation</label>
-          <input type="text" id="bk-company" placeholder="Your company name" />
-          <label>Phone Number</label>
-          <input type="tel" id="bk-phone" placeholder="+264 ..." />
-          <label>Message (optional)</label>
-          <textarea id="bk-msg" placeholder="Volume, location, frequency..."></textarea>
-          <button class="btn btn-primary book-cta-btn" onclick="sendEnquiry()">
-            Send via WhatsApp →
-          </button>
-          <p class="secure-note">We respond within the hour during business hours</p>
-        </div>
+  <div class="hero-lines"></div>
+  <div class="hero-content" style="padding-top:140px">
+    <div class="hero-left">
+      <div class="tag"><span class="pulse"></span>Established 2016 · Windhoek, Namibia</div>
+      <h1>
+        <span class="solid-word">POWERING</span>
+        <span class="fire-word">SOUTHERN</span>
+        <span class="solid-word" style="animation-delay:.2s">AFRICA.</span>
+      </h1>
+      <p class="sub">Namibia's premier petroleum &amp; logistics company. <strong>End-to-end fuel supply</strong> — from import and bulk storage to cross-border distribution across the SADC region.</p>
+      <div class="hero-cta-group">
+        <a href="#hero-enquire" class="btn btn-fire">Request a Quote →</a>
+        <a href="tel:+264812769281" class="btn btn-ghost">📞 Call Now</a>
       </div>
+      <div class="hero-stats">
+        <div class="hstat"><strong><em>8+</em></strong><span>Years in operation</span></div>
+        <div class="hstat"><strong>SADC</strong><span>Regional coverage</span></div>
+        <div class="hstat"><strong><em>100%</em></strong><span>Namibian owned</span></div>
+      </div>
+    </div>
+    <!-- ENQUIRY CARD -->
+    <div class="hero-card" id="hero-enquire">
+      <div class="card-head">
+        <span class="fire-dot"></span>
+        <h3>Quick Fuel Enquiry</h3>
+      </div>
+      <label>Service Required</label>
+      <select id="eq-type">
+        <option>Fuel Supply — Bulk Diesel / Petrol</option>
+        <option>Jet A1 Aviation Fuel</option>
+        <option>LPG / Gas Solutions</option>
+        <option>Fuel Storage &amp; Handling</option>
+        <option>Logistics &amp; Transportation</option>
+        <option>Breakdown / Emergency Supply</option>
+        <option>General Enquiry</option>
+      </select>
+      <label>Company / Organisation</label>
+      <input type="text" id="eq-co" placeholder="Your company name"/>
+      <label>Phone Number</label>
+      <input type="tel" id="eq-ph" placeholder="+264 ..."/>
+      <label>Details (optional)</label>
+      <textarea id="eq-msg" placeholder="Volume, location, frequency..."></textarea>
+      <button class="btn btn-fire card-btn" onclick="sendEnquiry()">Send via WhatsApp →</button>
+      <p class="note">🔒 We respond within the hour during business hours</p>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<section class="trust">
-  <div class="container">
-    <div class="trust-grid">
-      <div class="trust-item reveal">
-        <div class="trust-icon">🏭</div>
-        <h4>Fuel Import &amp; Export</h4>
-        <p>Direct procurement, no intermediaries</p>
-      </div>
-      <div class="trust-item reveal">
-        <div class="trust-icon">🛢️</div>
-        <h4>Bulk Storage</h4>
-        <p>State-of-the-art facilities</p>
-      </div>
-      <div class="trust-item reveal">
-        <div class="trust-icon">🚛</div>
-        <h4>SADC Distribution</h4>
-        <p>Cross-border logistics expertise</p>
-      </div>
-      <div class="trust-item reveal">
-        <div class="trust-icon">🇳🇦</div>
-        <h4>100% Namibian</h4>
-        <p>Wholly Namibian-owned enterprise</p>
-      </div>
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="wrap">
+    <div class="trust-items">
+      <div class="titem"><div class="titem-icon">🏭</div><div><h5>Fuel Import &amp; Export</h5><p>Direct procurement, no middlemen</p></div></div>
+      <div class="titem"><div class="titem-icon">🛢️</div><div><h5>Bulk Storage</h5><p>State-of-the-art facilities</p></div></div>
+      <div class="titem"><div class="titem-icon">🚛</div><div><h5>SADC Distribution</h5><p>Cross-border logistics expertise</p></div></div>
+      <div class="titem"><div class="titem-icon">🇳🇦</div><div><h5>100% Namibian</h5><p>Wholly Namibian-owned enterprise</p></div></div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- SPLIT: About -->
+<div class="split reveal-l">
+  <div class="split-img">
+    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80" alt="Industrial fuel storage tanks"/>
+    <div class="img-overlay"></div>
+    <span class="img-badge">Since 2016</span>
+  </div>
+  <div class="split-text">
+    <span class="eyebrow">Who We Are</span>
+    <h2>NAMIBIA'S ENERGY BACKBONE</h2>
+    <p class="body">Horizon Fuels &amp; Logistics is a wholly Namibian-owned petroleum company headquartered in Windhoek. Since 2016, we've been the trusted energy partner for industries, governments and logistics operators across Southern Africa.</p>
+    <ul>
+      <li>Direct supplier relationships for competitive, transparent pricing</li>
+      <li>Port access via Walvis Bay and Lüderitz for seamless import/export</li>
+      <li>End-to-end supply chain management with full traceability</li>
+      <li>Certified quality assurance on all products</li>
+    </ul>
+    <a href="#contact" class="btn btn-fire">Work With Us →</a>
+  </div>
+</div>
 
 <!-- PRODUCTS -->
-<section id="products" class="section">
-  <div class="container">
-    <div class="head-row">
-      <div class="section-header" style="margin-bottom:0">
-        <span class="eyebrow">Product Range</span>
-        <h2>Fuels for every industry</h2>
-        <p class="lede" style="margin-bottom:0">From ULP 95 to Jet A1 and industrial lubricants — quality-assured, certified fuel products for your operation.</p>
-      </div>
-      <div class="filters">
-        <button class="filter-btn active" data-f="all">All</button>
-        <button class="filter-btn" data-f="road">Road Fuels</button>
-        <button class="filter-btn" data-f="industrial">Industrial</button>
-        <button class="filter-btn" data-f="aviation">Aviation</button>
-      </div>
+<section id="products">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Product Range</span>
+      <h2>FUELS FOR EVERY <span>INDUSTRY</span></h2>
+      <p class="lede">From ULP 95 to Jet A1 and industrial lubricants — quality-assured, certified fuel products for every operation across the SADC region.</p>
     </div>
-    <div class="grid" id="product-grid"></div>
+    <div class="filter-bar" id="filter-bar">
+      <button class="fb on" data-f="all">All Products</button>
+      <button class="fb" data-f="road">Road Fuels</button>
+      <button class="fb" data-f="industrial">Industrial</button>
+      <button class="fb" data-f="aviation">Aviation</button>
+    </div>
+    <div class="products-grid" id="product-grid"></div>
   </div>
 </section>
 
-<!-- MISSION & VALUES -->
+<!-- MISSION -->
 <section id="mission">
-  <div class="container">
-    <div class="mission-grid">
-      <div class="reveal">
-        <div style="margin-bottom:24px">
-          <span class="eyebrow" style="background:rgba(212,160,23,.2);color:var(--brand)">Mission &amp; Vision</span>
-        </div>
-        <div class="mission-block" style="margin-bottom:32px">
-          <h2>Our Mission</h2>
-          <p>To be the leading petroleum supply and logistics partner in Southern Africa — delivering exceptional value through competitive pricing, superior service, and comprehensive energy solutions that power our clients' success.</p>
-        </div>
-        <div class="mission-block">
-          <h2>Our Vision</h2>
-          <p>To transform energy accessibility across SADC by providing reliable, high-quality petroleum products while maintaining the highest standards of safety, environmental stewardship, and operational excellence.</p>
-        </div>
+  <div class="wrap">
+    <div class="mission-inner">
+      <div class="reveal-l">
+        <span class="eyebrow">Mission &amp; Vision</span>
+        <h2>WE POWER MORE THAN ENGINES</h2>
+        <p>To be the leading petroleum supply and logistics partner in Southern Africa — delivering exceptional value through competitive pricing, superior service, and comprehensive energy solutions that power our clients' success.</p>
+        <p style="margin-top:12px">We transform energy accessibility across SADC, providing reliable, high-quality petroleum products while maintaining the highest standards of safety, environmental stewardship, and operational excellence.</p>
       </div>
-      <div class="reveal">
-        <div style="margin-bottom:24px">
-          <span class="eyebrow" style="background:rgba(212,160,23,.2);color:var(--brand)">Core Values</span>
-        </div>
-        <div class="values-list">
-          <div class="value-item">
-            <span class="v-icon">🤝</span>
-            <div><h5>Integrity</h5><p>Conducting business with transparency and ethical standards</p></div>
-          </div>
-          <div class="value-item">
-            <span class="v-icon">💡</span>
-            <div><h5>Innovation</h5><p>Pioneering solutions that drive industry advancement</p></div>
-          </div>
-          <div class="value-item">
-            <span class="v-icon">⭐</span>
-            <div><h5>Service Excellence</h5><p>Exceeding customer expectations through responsive service</p></div>
-          </div>
-          <div class="value-item">
-            <span class="v-icon">👥</span>
-            <div><h5>Teamwork</h5><p>Leveraging collective expertise for optimal results</p></div>
-          </div>
-          <div class="value-item">
-            <span class="v-icon">🌿</span>
-            <div><h5>Safety</h5><p>Prioritising the wellbeing of our people and communities</p></div>
-          </div>
-        </div>
+      <div class="mission-values reveal-r">
+        <div class="mval"><span class="vi">🤝</span><div><h5>Integrity</h5><p>Transparency and ethical standards in every transaction</p></div></div>
+        <div class="mval"><span class="vi">💡</span><div><h5>Innovation</h5><p>Pioneering solutions that drive industry advancement</p></div></div>
+        <div class="mval"><span class="vi">⭐</span><div><h5>Service Excellence</h5><p>Exceeding customer expectations at every touchpoint</p></div></div>
+        <div class="mval"><span class="vi">👥</span><div><h5>Teamwork</h5><p>Leveraging collective expertise for optimal results</p></div></div>
+        <div class="mval"><span class="vi">🌿</span><div><h5>Safety</h5><p>Prioritising the wellbeing of our people and communities</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- WHY US -->
-<section id="why" class="section">
-  <div class="container">
-    <div class="section-header">
+<section id="why">
+  <div class="wrap">
+    <div class="reveal">
       <span class="eyebrow">Why Choose Horizon</span>
-      <h2>Competitive advantages that set us apart.</h2>
-      <p class="lede">Our strategic position, direct supplier relationships, and local expertise make us the preferred energy partner across Southern Africa.</p>
+      <h2 style="font-size:clamp(48px,6vw,88px);margin-bottom:16px">THE HORIZON <span style="color:var(--fire)">EDGE</span></h2>
+      <p style="color:var(--smoke);font-size:17px;max-width:580px">Our strategic position, direct supplier relationships, and local expertise make us the preferred energy partner across Southern Africa.</p>
     </div>
     <div class="why-grid">
-      <div class="why-item reveal"><div class="why-num">01</div><h4>Direct Supplier Relationships</h4><p>Eliminates intermediaries for competitive pricing — full product traceability and supply security with quality control.</p></div>
-      <div class="why-item reveal"><div class="why-num">02</div><h4>Strategic Geographic Position</h4><p>Central Windhoek location for the SADC market. Port access through Walvis Bay and Lüderitz, plus cross-border logistics expertise.</p></div>
-      <div class="why-item reveal"><div class="why-num">03</div><h4>Comprehensive Solutions</h4><p>End-to-end supply chain management, integrated storage, transport and distribution for diverse industries.</p></div>
-      <div class="why-item reveal"><div class="why-num">04</div><h4>Local Expertise &amp; Reach</h4><p>Deep understanding of local market dynamics, established regional partnerships, and cultural &amp; linguistic advantages.</p></div>
+      <div class="wcard reveal"><div class="wnum">01</div><h4>Direct Supplier Relationships</h4><p>Eliminates intermediaries for competitive pricing — full product traceability and supply security with quality control at source.</p></div>
+      <div class="wcard reveal" style="transition-delay:.1s"><div class="wnum">02</div><h4>Strategic Geographic Position</h4><p>Central Windhoek location for the SADC market. Port access through Walvis Bay and Lüderitz, plus cross-border logistics expertise.</p></div>
+      <div class="wcard reveal" style="transition-delay:.2s"><div class="wnum">03</div><h4>Comprehensive Solutions</h4><p>End-to-end supply chain management, integrated storage, transport and distribution for diverse industries and sectors.</p></div>
+      <div class="wcard reveal" style="transition-delay:.3s"><div class="wnum">04</div><h4>Local Expertise &amp; Reach</h4><p>Deep understanding of local market dynamics, established regional partnerships, and cultural &amp; linguistic advantages.</p></div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="section">
-  <div class="container">
-    <div class="section-header">
+<section id="services">
+  <div class="wrap">
+    <div class="reveal">
       <span class="eyebrow">Our Services</span>
-      <h2>Three pillars. One reliable partner.</h2>
-      <p class="lede">From upstream procurement to downstream delivery — we cover the full energy supply chain.</p>
+      <h2 style="font-size:clamp(48px,6vw,88px);margin-bottom:16px">THREE PILLARS. <span style="color:var(--fire)">ONE PARTNER.</span></h2>
+      <p style="color:var(--smoke);font-size:17px;max-width:580px">From upstream procurement to downstream delivery — we cover the full energy supply chain so you don't have to.</p>
     </div>
     <div class="services-grid">
       <div class="svc reveal">
-        <div class="svc-accent"></div>
-        <div class="svc-icon">🛢️</div>
-        <h4>Fuel Supply &amp; Distribution</h4>
-        <p>Bulk wholesale distribution across the SADC region. ULP 95, ADO 50PPM, marine diesel, and more — direct from established international suppliers.</p>
-        <a href="#products">View products →</a>
+        <div class="svc-img"><img src="https://images.unsplash.com/photo-1601232805500-ce34f3ef2a4e?auto=format&fit=crop&w=900&q=80" alt="Fuel tanker truck on highway"/></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-body">
+          <div class="svc-icon">🛢️</div>
+          <h4>Fuel Supply &amp; Distribution</h4>
+          <p>Bulk wholesale distribution across SADC. ULP 95, ADO 50PPM, marine diesel and more — direct from international suppliers.</p>
+          <a href="#products" class="svc-link">View products</a>
+        </div>
       </div>
-      <div class="svc reveal">
-        <div class="svc-accent"></div>
-        <div class="svc-icon">🏗️</div>
-        <h4>Storage &amp; Fuel Bunkering</h4>
-        <p>State-of-the-art fuel storage facilities. Port fuel services including complete marine fuelling, debunkering, and management solutions.</p>
-        <a href="#contact">Get quote →</a>
+      <div class="svc reveal" style="transition-delay:.12s">
+        <div class="svc-img"><img src="https://images.unsplash.com/photo-1568454537842-d933259bb258?auto=format&fit=crop&w=900&q=80" alt="Industrial storage tanks at a refinery"/></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-body">
+          <div class="svc-icon">🏗️</div>
+          <h4>Storage &amp; Fuel Bunkering</h4>
+          <p>State-of-the-art fuel storage facilities. Port fuel services including marine fuelling, debunkering, and management solutions.</p>
+          <a href="#contact" class="svc-link">Get a quote</a>
+        </div>
       </div>
-      <div class="svc reveal">
-        <div class="svc-accent"></div>
-        <div class="svc-icon">🚚</div>
-        <h4>Logistics &amp; Transportation</h4>
-        <p>Specialised fuel and LPG transport. End-to-end supply chain management from procurement to delivery with complete traceability and quality certification.</p>
-        <a href="#contact">Enquire now →</a>
+      <div class="svc reveal" style="transition-delay:.24s">
+        <div class="svc-img"><img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80" alt="Logistics trucks at depot"/></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-body">
+          <div class="svc-icon">🚚</div>
+          <h4>Logistics &amp; Transportation</h4>
+          <p>Specialised fuel and LPG transport. End-to-end supply chain management from procurement to delivery with complete traceability.</p>
+          <a href="#contact" class="svc-link">Enquire now</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MAJOR PROJECTS -->
-<section id="projects" class="section" style="background:var(--bg)">
-  <div class="container">
-    <div class="section-header">
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="reveal" style="position:relative;z-index:2">
       <span class="eyebrow">Major Development Projects</span>
-      <h2>Investing in Southern Africa's energy future.</h2>
-      <p class="lede">Two flagship infrastructure projects that will transform fuel security and logistics capacity across the SADC region.</p>
+      <h2 style="font-size:clamp(48px,6vw,88px);margin-bottom:16px">INVESTING IN THE <span style="color:var(--fire)">FUTURE</span></h2>
+      <p style="color:var(--smoke);font-size:17px;max-width:600px">Two flagship infrastructure projects that will transform fuel security and logistics capacity across the SADC region.</p>
     </div>
     <div class="projects-grid">
-      <div class="project-card reveal">
-        <span class="proj-tag">In Development</span>
-        <h4>Katima Mulilo Bulk Fuel Storage Facility</h4>
-        <div class="proj-meta">
-          <div class="proj-row"><span class="label">Investment</span><span class="val">N$25 Million (TBA)</span></div>
-          <div class="proj-row"><span class="label">Capacity</span><span class="val">25-million-litre storage</span></div>
-          <div class="proj-row"><span class="label">Land Area</span><span class="val">70,000m² (7 ha) — strategic SADC location</span></div>
-          <div class="proj-row"><span class="label">Status</span><span class="val">Environmental clearances obtained — advancing to financial feasibility</span></div>
-          <div class="proj-row"><span class="label">Market</span><span class="val">SADC region</span></div>
+      <div class="prj reveal">
+        <div class="prj-img">
+          <img src="https://images.unsplash.com/photo-1616400619175-5beda3a17896?auto=format&fit=crop&w=900&q=80" alt="Industrial fuel storage construction"/>
+          <span class="prj-status">In Development</span>
         </div>
-        <div class="proj-benefits">
-          <h6>Project Benefits</h6>
-          <ul>
-            <li>Enhanced regional fuel security</li>
-            <li>Reduced transportation costs</li>
-            <li>Strategic SADC market positioning</li>
+        <div class="prj-body">
+          <h4>Katima Mulilo Bulk Fuel Storage Facility</h4>
+          <div class="prj-meta">
+            <div class="pmrow"><span class="lbl">Investment</span><span class="val">N$25 Million (TBA)</span></div>
+            <div class="pmrow"><span class="lbl">Capacity</span><span class="val">25-million-litre storage</span></div>
+            <div class="pmrow"><span class="lbl">Land Area</span><span class="val">70,000m² — 7 ha, strategic SADC</span></div>
+            <div class="pmrow"><span class="lbl">Status</span><span class="val">Environmental clearances obtained</span></div>
+          </div>
+          <ul class="prj-bullets">
+            <li>Enhanced regional fuel security across SADC</li>
+            <li>Reduced transportation costs for operators</li>
+            <li>Strategic cross-border market positioning</li>
             <li>Job creation and economic development</li>
           </ul>
         </div>
       </div>
-      <div class="project-card reveal">
-        <span class="proj-tag">Council Approved</span>
-        <h4>Lüderitz Logistical Hub</h4>
-        <div class="proj-meta">
-          <div class="proj-row"><span class="label">Investment</span><span class="val">Transformational infrastructure</span></div>
-          <div class="proj-row"><span class="label">Land Area</span><span class="val">120,000m² (12 ha)</span></div>
-          <div class="proj-row"><span class="label">Approval</span><span class="val">Lüderitz Town Council approved</span></div>
-          <div class="proj-row"><span class="label">Vision</span><span class="val">Creating Southern Africa's premier logistics destination</span></div>
+      <div class="prj reveal" style="transition-delay:.15s">
+        <div class="prj-img">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Port logistics hub Luderitz Namibia"/>
+          <span class="prj-status">Council Approved</span>
         </div>
-        <div class="proj-benefits">
-          <h6>Project Benefits</h6>
-          <ul>
+        <div class="prj-body">
+          <h4>Lüderitz Logistical Hub</h4>
+          <div class="prj-meta">
+            <div class="pmrow"><span class="lbl">Land Area</span><span class="val">120,000m² — 12 ha</span></div>
+            <div class="pmrow"><span class="lbl">Approval</span><span class="val">Lüderitz Town Council approved</span></div>
+            <div class="pmrow"><span class="lbl">Vision</span><span class="val">Southern Africa's premier logistics destination</span></div>
+          </div>
+          <ul class="prj-bullets">
             <li>Cementing Lüderitz as a major logistical hub</li>
             <li>Increased export mineral storage capacity</li>
-            <li>Enhanced regional fuel hub</li>
+            <li>Enhanced regional fuel hub &amp; infrastructure</li>
             <li>Comprehensive trucking depot facilities</li>
           </ul>
         </div>
@@ -839,65 +1142,71 @@ footer .logo .logo-mark{background:rgba(255,255,255,.08);border:1px solid rgba(2
   </div>
 </section>
 
-<!-- CTA BANNER -->
-<section class="cta-banner">
-  <div class="container cta-inner">
-    <div>
-      <h2>Ready to power your operation?</h2>
-      <p>Get in touch for a competitive fuel supply or logistics quote — or call us directly. Our team responds fast.</p>
-      <div class="phones">
-        <a href="tel:+264812769281" class="phone">📞 <span>+264 81 276 9281</span></a>
-        <a href="mailto:info@horizonfuels.com.na" class="phone">✉️ <span>info@horizonfuels.com.na</span></a>
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-bg">
+    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=2000&q=80" alt="Fuel infrastructure at night"/>
+  </div>
+  <div class="cta-band-overlay"></div>
+  <div class="cta-band-inner">
+    <div class="reveal-l">
+      <h2>READY TO POWER YOUR <span>OPERATION?</span></h2>
+      <p>Get in touch for a competitive fuel supply or logistics quote. Our team responds fast — usually within the hour during business hours.</p>
+      <div class="cta-btns">
+        <a href="#hero-enquire" class="btn btn-fire">Request a Quote →</a>
+        <a href="https://wa.me/264812769281" class="btn btn-ghost">💬 WhatsApp Us</a>
       </div>
     </div>
-    <div class="cta-actions">
-      <a href="#enquire" class="btn btn-primary">Request a Quote →</a>
-      <a href="https://wa.me/264812769281" class="btn btn-ghost">💬 WhatsApp Us</a>
+    <div class="contacts-stack reveal-r">
+      <a href="tel:+264812769281" class="cinfo">
+        <div class="ci-icon">📞</div>
+        <div><div class="ci-label">Call Us</div><div class="ci-val">+264 81 276 9281</div></div>
+      </a>
+      <a href="mailto:info@horizonfuels.com.na" class="cinfo">
+        <div class="ci-icon">✉️</div>
+        <div><div class="ci-label">Email</div><div class="ci-val">info@horizonfuels.com.na</div></div>
+      </a>
+      <div class="cinfo">
+        <div class="ci-icon">📍</div>
+        <div><div class="ci-label">Head Office</div><div class="ci-val">ERF 136 Jan Jonker St, Windhoek</div></div>
+      </div>
+      <div class="cinfo">
+        <div class="ci-icon">🕐</div>
+        <div><div class="ci-label">Office Hours</div><div class="ci-val">Mon–Fri: 08:00 – 17:00</div></div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="container">
-    <div class="section-header">
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
       <span class="eyebrow">Get in Touch</span>
-      <h2>Let's talk energy.</h2>
-      <p class="lede">Whether you need bulk fuel supply, storage solutions, or logistics support — we're ready to help.</p>
+      <h2 style="font-size:clamp(48px,6vw,88px);margin-bottom:8px">LET'S TALK <span style="color:var(--fire)">ENERGY.</span></h2>
+      <p style="color:var(--smoke);font-size:17px;max-width:560px">Whether you need bulk fuel supply, storage solutions, or logistics support — we're ready to help you keep moving.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-info">
-        <div class="info-item">
-          <div class="info-icon">📍</div>
-          <div><h5>Visit Us</h5><p>ERF 136, Jan Jonker Street,<br/>Windhoek, Namibia</p></div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">📞</div>
-          <div><h5>Call Us</h5><p><a href="tel:+264812769281">+264 81 276 9281</a></p></div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">✉️</div>
-          <div><h5>Email</h5><p><a href="mailto:info@horizonfuels.com.na">info@horizonfuels.com.na</a></p></div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">🕐</div>
-          <div><h5>Open Hours</h5><p>Mon–Fri: 08:00 – 17:00<br/>Sat: By appointment</p></div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">🤝</div>
-          <div><h5>Strategic Partners</h5><p>Vivo Energy Namibia · Katima Mulilo Town Council · Walvis Bay Corridor Group · Lüderitz Town Council · Municipal Partners</p></div>
+        <div class="ci2"><div class="ci2-icon">📍</div><div><h5>Visit Us</h5><p>ERF 136, Jan Jonker Street,<br/>Windhoek, Namibia</p></div></div>
+        <div class="ci2"><div class="ci2-icon">📞</div><div><h5>Call Us</h5><a href="tel:+264812769281">+264 81 276 9281</a></div></div>
+        <div class="ci2"><div class="ci2-icon">✉️</div><div><h5>Email</h5><a href="mailto:info@horizonfuels.com.na">info@horizonfuels.com.na</a></div></div>
+        <div class="ci2"><div class="ci2-icon">🕐</div><div><h5>Hours</h5><p>Mon–Fri: 08:00 – 17:00<br/>Sat: By appointment</p></div></div>
+        <div class="partners-strip">
+          <h6>Strategic Partners</h6>
+          <p>Vivo Energy Namibia · Katima Mulilo Town Council · Walvis Bay Corridor Group · Lüderitz Town Council · Municipal Partners</p>
         </div>
       </div>
-      <form class="contact-form" onsubmit="sendForm(event)">
+      <form class="cform reveal-r" onsubmit="sendForm(event)">
         <label>Your Name</label>
-        <input type="text" required placeholder="Full name" id="cf-name" />
+        <input type="text" required placeholder="Full name" id="cf-n"/>
         <label>Company</label>
-        <input type="text" placeholder="Your company or organisation" id="cf-company" />
+        <input type="text" placeholder="Your company or organisation" id="cf-c"/>
         <label>Email or Phone</label>
-        <input type="text" required placeholder="How can we reach you?" id="cf-contact" />
+        <input type="text" required placeholder="How can we reach you?" id="cf-ct"/>
         <label>Message</label>
-        <textarea required placeholder="Tell us about your fuel or logistics needs..." id="cf-msg"></textarea>
-        <button class="btn btn-primary" type="submit">Send Message →</button>
+        <textarea required placeholder="Tell us about your fuel or logistics needs..." id="cf-m"></textarea>
+        <button class="btn btn-fire" type="submit">Send Message →</button>
       </form>
     </div>
   </div>
@@ -905,11 +1214,12 @@ footer .logo .logo-mark{background:rgba(255,255,255,.08);border:1px solid rgba(2
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
+  <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="logo"><span class="logo-mark">⛽</span><span>Horizon Fuels</span></div>
-        <p class="foot-desc">Horizon Fuels &amp; Logistics — Namibia's premier petroleum and logistics company, powering Southern Africa's energy future since 2016.</p>
+        <div class="logo foot-brand"><span class="logo-icon">⛽</span><span>HORIZON FUELS</span></div>
+        <p class="foot-desc">Namibia's premier petroleum and logistics company — powering Southern Africa's energy future since 2016.</p>
+        <span class="foot-fire">100% NAMIBIAN OWNED 🇳🇦</span>
       </div>
       <div>
         <h6>Services</h6>
@@ -932,14 +1242,14 @@ footer .logo .logo-mark{background:rgba(255,255,255,.08);border:1px solid rgba(2
       <div>
         <h6>Contact</h6>
         <ul>
-          <li>+264 81 276 9281</li>
-          <li>info@horizonfuels.com.na</li>
-          <li>ERF 136 Jan Jonker St</li>
-          <li>Windhoek, Namibia</li>
+          <li style="color:#5A6070;font-size:13px">+264 81 276 9281</li>
+          <li style="color:#5A6070;font-size:13px">info@horizonfuels.com.na</li>
+          <li style="color:#5A6070;font-size:13px">ERF 136 Jan Jonker St</li>
+          <li style="color:#5A6070;font-size:13px">Windhoek, Namibia</li>
         </ul>
       </div>
     </div>
-    <div class="copy">
+    <div class="foot-copy">
       <span>© 2025 Horizon Fuels &amp; Logistics. All rights reserved.</span>
       <span>Windhoek · Namibia 🇳🇦</span>
     </div>
@@ -949,114 +1259,91 @@ footer .logo .logo-mark{background:rgba(255,255,255,.08);border:1px solid rgba(2
 <a href="https://wa.me/264812769281?text=Hi%20Horizon%20Fuels%2C%20I'd%20like%20to%20enquire%20about%20your%20fuel%20and%20logistics%20services." class="float-wa" title="Chat on WhatsApp">💬</a>
 
 <script>
-// PRODUCT DATA
-const products = [
-  {id:"ULP-95",cat:"road",name:"ULP 95",spec:"Unleaded Premium · 95 Octane",desc:"Premium automotive and industrial lubricants",badge:"Unleaded Premium"},
-  {id:"ADO-50",cat:"road",name:"ADO 50PPM",spec:"Low Sulphur Diesel · 50PPM",desc:"Standard and 10PPM on request",badge:"Diesel"},
-  {id:"MDO",cat:"road",name:"Marine Diesel",spec:"Marine Grade · Low Sulphur",desc:"Complete marine fuelling and port fuel services",badge:"Marine"},
-  {id:"JET-A1",cat:"aviation",name:"Jet A1",spec:"Aviation Turbine Fuel",desc:"Aviation-grade fuel with full quality certification",badge:"Aviation"},
-  {id:"LPG",cat:"industrial",name:"LPG Gas",spec:"Liquefied Petroleum Gas",desc:"Complete liquefied petroleum gas solutions",badge:"Gas"},
-  {id:"LUBE",cat:"industrial",name:"Lubricants",spec:"Premium Automotive & Industrial",desc:"Full range of automotive and industrial lubricants",badge:"Lubricants"},
-  {id:"BULK",cat:"industrial",name:"Bulk Wholesale",spec:"SADC Distribution",desc:"Comprehensive supply chain from procurement to delivery",badge:"Wholesale"},
-  {id:"Q-CERT",cat:"road",name:"Quality Assurance",spec:"Rigorous Testing & Certification",desc:"Fuel testing and certification to industry standards",badge:"Certified"},
+/* ── PRODUCTS ── */
+const products=[
+  {id:"ULP-95",cat:"road",name:"ULP 95",spec:"Unleaded Premium · 95 Octane",img:"https://images.unsplash.com/photo-1557171765-3d8900e56e90?auto=format&fit=crop&w=600&q=80",badge:"Unleaded Premium"},
+  {id:"ADO-50",cat:"road",name:"ADO 50PPM",spec:"Low Sulphur Diesel · 50PPM",img:"https://images.unsplash.com/photo-1610288311735-39b7facbd095?auto=format&fit=crop&w=600&q=80",badge:"Diesel"},
+  {id:"MDO",cat:"road",name:"Marine Diesel",spec:"Marine Grade · Low Sulphur",img:"https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=600&q=80",badge:"Marine"},
+  {id:"JET-A1",cat:"aviation",name:"Jet A1",spec:"Aviation Turbine Fuel",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80",badge:"Aviation"},
+  {id:"LPG",cat:"industrial",name:"LPG Gas",spec:"Liquefied Petroleum Gas",img:"https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=600&q=80",badge:"Gas"},
+  {id:"LUBE",cat:"industrial",name:"Lubricants",spec:"Premium Automotive & Industrial",img:"https://images.unsplash.com/photo-1635070040571-a67a6c52a26d?auto=format&fit=crop&w=600&q=80",badge:"Lubricants"},
+  {id:"BULK",cat:"industrial",name:"Bulk Wholesale",spec:"SADC Distribution",img:"https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?auto=format&fit=crop&w=600&q=80",badge:"Wholesale"},
+  {id:"CERT",cat:"road",name:"Quality Assured",spec:"Rigorous Testing & Certification",img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",badge:"Certified"},
 ];
 
-const fuelEmojis = {road:"⛽",aviation:"✈️",industrial:"🏭"};
-
 function renderProducts(filter="all"){
-  const grid = document.getElementById("product-grid");
-  const filtered = products.filter(p => filter==="all" || p.cat===filter);
-  grid.innerHTML = "";
-  filtered.forEach((p, i) => {
-    const el = document.createElement("div");
-    el.className = "card reveal";
-    el.style.transitionDelay = (i * 35) + "ms";
-    el.innerHTML = `
-      <div class="img">
-        <span class="badge">${p.badge}</span>
-        <span class="fuel-icon">${fuelEmojis[p.cat]||"🛢️"}</span>
-        <span class="id-badge">${p.id}</span>
+  const g=document.getElementById("product-grid");
+  const list=products.filter(p=>filter==="all"||p.cat===filter);
+  g.innerHTML="";
+  list.forEach((p,i)=>{
+    const d=document.createElement("div");
+    d.className="pcard reveal";
+    d.style.transitionDelay=(i*40)+"ms";
+    d.innerHTML=`
+      <div class="pimg">
+        <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+        <span class="pbadge">${p.badge}</span>
       </div>
-      <div class="body">
+      <div class="pbody">
         <h3>${p.name}</h3>
-        <div class="dims">${p.spec}</div>
-        <div class="price"><strong>${p.desc}</strong></div>
-        <div style="height:10px"></div>
-        <a href="https://wa.me/264812769281?text=Hi%2C%20I'd%20like%20to%20enquire%20about%20${encodeURIComponent(p.name)}" class="btn btn-dark">Enquire →</a>
+        <div class="pspec">${p.spec}</div>
+        <a href="https://wa.me/264812769281?text=Hi%2C%20I'd%20like%20to%20enquire%20about%20${encodeURIComponent(p.name)}" class="penq">Enquire</a>
       </div>`;
-    grid.appendChild(el);
+    g.appendChild(d);
   });
   setupReveal();
 }
 
-document.querySelectorAll(".filter-btn").forEach(b => {
-  b.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
-    b.classList.add("active");
+document.querySelectorAll(".fb").forEach(b=>{
+  b.addEventListener("click",()=>{
+    document.querySelectorAll(".fb").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
     renderProducts(b.dataset.f);
   });
 });
 
+/* ── ENQUIRY ── */
 function sendEnquiry(){
-  const type = document.getElementById("bk-type").value;
-  const company = document.getElementById("bk-company").value || "-";
-  const phone = document.getElementById("bk-phone").value || "-";
-  const msg = document.getElementById("bk-msg").value || "";
-  const text = `Hi Horizon Fuels & Logistics!%0A%0A*Service:* ${encodeURIComponent(type)}%0A*Company:* ${encodeURIComponent(company)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Details:* ${encodeURIComponent(msg)}`;
-  window.open(`https://wa.me/264812769281?text=${text}`, "_blank");
+  const type=document.getElementById("eq-type").value;
+  const co=document.getElementById("eq-co").value||"-";
+  const ph=document.getElementById("eq-ph").value||"-";
+  const msg=document.getElementById("eq-msg").value||"";
+  const text=`Hi Horizon Fuels & Logistics!%0A%0A*Service:* ${encodeURIComponent(type)}%0A*Company:* ${encodeURIComponent(co)}%0A*Phone:* ${encodeURIComponent(ph)}%0A*Details:* ${encodeURIComponent(msg)}`;
+  window.open(`https://wa.me/264812769281?text=${text}`,"_blank");
 }
 
 function sendForm(e){
   e.preventDefault();
-  const n = document.getElementById("cf-name").value;
-  const c = document.getElementById("cf-contact").value;
-  const co = document.getElementById("cf-company").value || "";
-  const m = document.getElementById("cf-msg").value;
-  const subject = encodeURIComponent("Website enquiry from " + n);
-  const body = encodeURIComponent(`Name: ${n}\nCompany: ${co}\nContact: ${c}\n\n${m}`);
-  window.location.href = `mailto:info@horizonfuels.com.na?subject=${subject}&body=${body}`;
+  const n=document.getElementById("cf-n").value;
+  const c=document.getElementById("cf-ct").value;
+  const co=document.getElementById("cf-c").value||"";
+  const m=document.getElementById("cf-m").value;
+  window.location.href=`mailto:info@horizonfuels.com.na?subject=${encodeURIComponent("Website enquiry from "+n)}&body=${encodeURIComponent(`Name: ${n}\nCompany: ${co}\nContact: ${c}\n\n${m}`)}`;
 }
 
+/* ── NAV ── */
+const nav=document.getElementById("nav");
+const navQ=document.getElementById("nav-quote");
+window.addEventListener("scroll",()=>{
+  const s=window.scrollY>60;
+  nav.classList.toggle("scrolled",s);
+  navQ.style.display=s?"inline-flex":"none";
+},{passive:true});
+
+const hb=document.getElementById("hamburger");
+const mm=document.getElementById("mobileMenu");
+function closeMM(){hb.classList.remove("open");mm.classList.remove("open");document.body.style.overflow="";}
+hb.addEventListener("click",()=>{const o=mm.classList.toggle("open");hb.classList.toggle("open",o);document.body.style.overflow=o?"hidden":"";});
+document.querySelectorAll(".mnl").forEach(a=>a.addEventListener("click",closeMM));
+document.addEventListener("click",e=>{if(mm.classList.contains("open")&&!mm.contains(e.target)&&!hb.contains(e.target))closeMM();});
+
+/* ── REVEAL ── */
 function setupReveal(){
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-    });
-  }, {threshold:.1});
-  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});
+  },{threshold:.08});
+  document.querySelectorAll(".reveal:not(.in),.reveal-l:not(.in),.reveal-r:not(.in)").forEach(el=>io.observe(el));
 }
-
-const navbar = document.getElementById("navbar");
-window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled", window.scrollY > 20);
-}, {passive:true});
-
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-
-function closeMobileMenu(){
-  hamburger.classList.remove("open");
-  mobileMenu.classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-hamburger.addEventListener("click", () => {
-  const isOpen = mobileMenu.classList.toggle("open");
-  hamburger.classList.toggle("open", isOpen);
-  document.body.style.overflow = isOpen ? "hidden" : "";
-});
-
-document.querySelectorAll(".mobile-nav-link, .mobile-ctas a").forEach(link => {
-  link.addEventListener("click", closeMobileMenu);
-});
-
-document.addEventListener("click", e => {
-  if(mobileMenu.classList.contains("open") &&
-     !mobileMenu.contains(e.target) &&
-     !hamburger.contains(e.target)){
-    closeMobileMenu();
-  }
-});
 
 renderProducts();
 setupReveal();
